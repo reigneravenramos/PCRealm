@@ -1,0 +1,11 @@
+{
+  "Header": {
+    "title": "Looking for pc parts ? ",
+    "paragraph": "PCRealm is here to help you !"
+  },
+  
+    "GaugeChart": {
+      "skills": ["JavaScript", "React", "Node.js", "CSS", "HTML"],
+      "values": [85, 90, 70, 80, 95]
+    }
+}
