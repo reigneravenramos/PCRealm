@@ -26,7 +26,7 @@ const GaugeChart = ({ data = {} }) => {
     labels: data.skills || ['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5'],
     datasets: [
       {
-        label: 'Skills',
+        label: 'Computer',
         data: data.values || [80, 70, 90, 60, 85],
         backgroundColor: 'rgba(0, 123, 255, 0.2)',
         borderColor: '#007bff',
@@ -45,7 +45,7 @@ const GaugeChart = ({ data = {} }) => {
           color: '#000',
         },
         grid: {
-          color: '#ddd',
+          color: '#575757',
         },
       },
     },

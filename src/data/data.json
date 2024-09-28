@@ -5,7 +5,7 @@
   },
   
     "GaugeChart": {
-      "skills": ["JavaScript", "React", "Node.js", "CSS", "HTML"],
+      "skills": ["Computing(Processor)", "DataStorage(SSD)", "Rendiring(Graphics)", "DataTransfer(Memory)", "PowerCapacity(Powersupply)"],
       "values": [85, 90, 70, 80, 95]
     }
 }

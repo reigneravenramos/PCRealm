@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-// Simple Gauge component to display a value
 const Gauge = ({ value }) => {
   return (
-    <div style={{ ...styles.gaugeContainer }}>
-      <div style={{ ...styles.gauge, backgroundColor: '#B7B7B7' }}>
+    <div style={styles.gaugeContainer}>
+      <div style={{ ...styles.gauge, backgroundColor: '#007bff' }}>
         {value}
       </div>
     </div>
@@ -14,20 +13,12 @@ const Gauge = ({ value }) => {
 export const SideNavigation = () => {
   const [inputValue, setInputValue] = useState("");
   const [dropdownValue, setDropdownValue] = useState("option1");
-  const [currentFigure, setCurrentFigure] = useState(0);
+  const [currentFigures, setCurrentFigures] = useState([0, 0, 0]); // Track each gauge's index
 
-  // Define the features for each dropdown option
-  const features = {
-    option1: ["Feature 1", "Feature 2", "Feature 3"],
-    option2: ["Feature 4", "Feature 5", "Feature 6"],
-    option3: ["Feature 7", "Feature 8", "Feature 9"],
-  };
-
-  // Define the values for the gauges corresponding to each dropdown option
   const gaugeValues = {
-    option1: [1, 2, 3], // Values for Option 1
-    option2: [4, 5, 6], // Values for Option 2
-    option3: [7, 8, 9], // Values for Option 3
+    option1: [1, 2, 3],
+    option2: [4, 5, 6],
+    option3: [7, 8, 9],
   };
 
   const handleInputChange = (e) => {
@@ -36,26 +27,32 @@ export const SideNavigation = () => {
 
   const handleDropdownChange = (e) => {
     setDropdownValue(e.target.value);
-    setCurrentFigure(0); // Reset to the first figure when dropdown changes
+    setCurrentFigures([0, 0, 0]); // Reset all to the first figure
   };
 
   const handleSubmit = () => {
     console.log(`Input: ${inputValue}, Dropdown: ${dropdownValue}`);
   };
 
-  const nextFigure = () => {
-    setCurrentFigure((prev) => (prev + 1) % gaugeValues[dropdownValue].length);
+  const nextFigure = (index) => {
+    setCurrentFigures((prev) => {
+      const newFigures = [...prev];
+      newFigures[index] = (newFigures[index] + 1) % gaugeValues[dropdownValue].length;
+      return newFigures;
+    });
   };
 
-  const prevFigure = () => {
-    setCurrentFigure((prev) => (prev - 1 + gaugeValues[dropdownValue].length) % gaugeValues[dropdownValue].length);
+  const prevFigure = (index) => {
+    setCurrentFigures((prev) => {
+      const newFigures = [...prev];
+      newFigures[index] = (newFigures[index] - 1 + gaugeValues[dropdownValue].length) % gaugeValues[dropdownValue].length;
+      return newFigures;
+    });
   };
 
   return (
     <div style={styles.sideNav}>
-      {/* Container for dropdown, text input, and button */}
       <div style={styles.formContainer}>
-        {/* Text Input */}
         <input
           type="text"
           value={inputValue}
@@ -63,8 +60,6 @@ export const SideNavigation = () => {
           placeholder="Enter Budget"
           style={styles.textField}
         />
-        
-        {/* Dropdown */}
         <select
           value={dropdownValue}
           onChange={handleDropdownChange}
@@ -74,30 +69,18 @@ export const SideNavigation = () => {
           <option value="option2">Option 2</option>
           <option value="option3">Option 3</option>
         </select>
-
-        {/* Generate Button */}
         <button onClick={handleSubmit} style={styles.button}>Generate</button>
       </div>
 
-      {/* Carousel for Option 1 */}
-      {dropdownValue === "option1" && (
-        <div style={styles.carouselContainer}>
-          <button onClick={prevFigure} style={styles.arrowButton}>&lt;</button>
-          <Gauge value={gaugeValues[dropdownValue][currentFigure]} />
-          <button onClick={nextFigure} style={styles.arrowButton}>&gt;</button>
-        </div>
-      )}
-
-      {/* Render the feature links based on the dropdown selection */}
-      <ul style={styles.navList}>
-        {features[dropdownValue].map((feature, index) => (
-          <li key={index} style={styles.navItem}>
-            <a href={`#${feature.toLowerCase().replace(/\s+/g, '')}`} style={styles.navLink}>
-              {feature}
-            </a>
-          </li>
+      <div style={styles.scrollContainer}>
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div key={index} style={styles.carouselContainer}>
+            <button onClick={() => prevFigure(index)} style={styles.arrowButton}>&lt;</button>
+            <Gauge value={gaugeValues[dropdownValue][currentFigures[index]]} />
+            <button onClick={() => nextFigure(index)} style={styles.arrowButton}>&gt;</button>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
@@ -106,67 +89,64 @@ const styles = {
   sideNav: {
     position: 'absolute',
     right: '30px',
-    top: '80vw', 
+    top: '80vw',
     width: '400px',
+    height: '400px',
     backgroundColor: '#ffffff',
     padding: '25px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
     borderRadius: '12px',
     zIndex: '1',
     fontFamily: '"Helvetica Neue", sans-serif',
+    overflow: 'hidden',
+  },
+  scrollContainer: {
+    maxHeight: '300px',
+    overflowY: 'scroll',
+    scrollbarWidth: 'thin',
+    scrollbarColor: '#cedff0 #f1f1f1',
+    paddingRight: '10px',
   },
   carouselContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '20px 0',
+    margin: '15px 0',
   },
   gaugeContainer: {
-    width: '100px',
-    height: '100px',
+    width: '80px',
+    height: '80px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     margin: '0 10px',
   },
   gauge: {
-    width: '100px',
-    height: '100px',
-    borderRadius: '50%', // Make it a circle
+    width: '80px',
+    height: '80px',
+    borderRadius: '50%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '24px', // Font size for the gauge value
-    color: '#fff', // Color of the text inside the gauge
+    fontSize: '24px',
+    color: '#ffffff',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
   },
   arrowButton: {
     backgroundColor: '#007bff',
     color: '#fff',
     border: 'none',
     borderRadius: '50%',
-    width: '30px',
-    height: '30px',
+    width: '40px',
+    height: '40px',
     cursor: 'pointer',
-    fontSize: '16px',
+    fontSize: '20px',
     transition: 'background-color 0.3s ease',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  navList: {
-    listStyleType: 'none',
-    padding: '0',
-    marginTop: '30px',
-  },
-  navItem: {
-    marginBottom: '15px',
-  },
-  navLink: {
-    textDecoration: 'none',
-    color: '#007bff',
-    fontSize: '16px',
-    fontWeight: '500',
-    transition: 'color 0.3s ease',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    margin: '0 5px',
   },
   formContainer: {
     display: 'flex',
@@ -206,7 +186,29 @@ const styles = {
     fontSize: '14px',
     fontWeight: '600',
     transition: 'background-color 0.3s ease',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
   },
 };
+
+const scrollbarStyles = `
+  .scrollContainer::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .scrollContainer::-webkit-scrollbar-thumb {
+    background-color: #83868a;
+    border-radius: 10px;
+  }
+  .scrollContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #707579;
+  }
+`;
+
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = scrollbarStyles;
+document.head.appendChild(styleSheet);
 
 export default SideNavigation;
