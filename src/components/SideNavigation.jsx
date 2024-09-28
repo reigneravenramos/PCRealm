@@ -65,9 +65,9 @@ export const SideNavigation = () => {
           onChange={handleDropdownChange}
           style={styles.dropdown}
         >
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          <option value="option1">Gaming</option>
+          <option value="option2">School</option>
+          <option value="option3">Work</option>
         </select>
         <button onClick={handleSubmit} style={styles.button}>Generate</button>
       </div>
@@ -89,10 +89,10 @@ const styles = {
   sideNav: {
     position: 'absolute',
     right: '30px',
-    top: '80vw',
+    top: '85vw',
     width: '400px',
-    height: '400px',
-    backgroundColor: '#ffffff',
+    height: '450px',
+    backgroundColor: '#213A57',
     padding: '25px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
     borderRadius: '12px',
@@ -178,7 +178,7 @@ const styles = {
   button: {
     width: '30%',
     padding: '10px',
-    backgroundColor: '#007bff',
+    backgroundColor: '#0B6477',
     color: '#fff',
     border: 'none',
     borderRadius: '6px',

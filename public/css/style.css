@@ -3,7 +3,7 @@ html {
   font-family           : "Open Sans", sans-serif;
   text-rendering        : optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  color                 : #777;
+  color                 : #AFDFEE;
   font-weight           : 400;
   width                 : 100% !important;
   height                : 100% !important;
@@ -90,7 +90,7 @@ hr {
 }
 
 #menu.navbar-default {
-  background-color: #fff;
+  background-color: #10151D;
   border-color    : rgba(231, 231, 231, 0);
   box-shadow      : 0 0 10px rgba(0, 0, 0, 0.15);
 }
@@ -99,14 +99,14 @@ hr {
   font-family   : "Raleway", sans-serif;
   font-size     : 24px;
   font-weight   : 700;
-  color         : #333;
+  color         : #fff;
   text-transform: uppercase;
 }
 
 #menu.navbar-default .navbar-nav>li>a {
   font-family   : "Lato", sans-serif;
   text-transform: uppercase;
-  color         : #555;
+  color         : #fff;
   font-size     : 15px;
   font-weight   : 400;
   padding       : 8px 2px;
@@ -284,7 +284,7 @@ header .intro-text {
 
 /* Features Section */
 #features {
-  background: #f6f6f6;
+  background: #AFDFEE;
 }
 
 #features i.fa {
