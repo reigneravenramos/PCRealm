@@ -32,7 +32,7 @@ export const Navigation = (props) => {
                 BUILD A PC
               </a>
             </li>
-           
+
           </ul>
         </div>
       </div>

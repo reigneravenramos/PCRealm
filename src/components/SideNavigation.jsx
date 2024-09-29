@@ -13,12 +13,12 @@ const Gauge = ({ value }) => {
 export const SideNavigation = () => {
   const [inputValue, setInputValue] = useState("");
   const [dropdownValue, setDropdownValue] = useState("option1");
-  const [currentFigures, setCurrentFigures] = useState([0, 0, 0]); // Track each gauge's index
+  const [currentFigures, setCurrentFigures] = useState([0, 0, 0, 0]); // Track each gauge's index
 
   const gaugeValues = {
-    option1: [1, 2, 3],
-    option2: [4, 5, 6],
-    option3: [7, 8, 9],
+    option1: [1, 2, 3, 4],
+    option2: [4, 5, 6, 8],
+    option3: [7, 8, 9, 12],
   };
 
   const handleInputChange = (e) => {
@@ -73,7 +73,7 @@ export const SideNavigation = () => {
       </div>
 
       <div style={styles.scrollContainer}>
-        {Array.from({ length: 3 }).map((_, index) => (
+        {Array.from({ length: 4 }).map((_, index) => (
           <div key={index} style={styles.carouselContainer}>
             <button onClick={() => prevFigure(index)} style={styles.arrowButton}>&lt;</button>
             <Gauge value={gaugeValues[dropdownValue][currentFigures[index]]} />
@@ -90,8 +90,8 @@ const styles = {
     position: 'absolute',
     right: '30px',
     top: '85vw',
-    width: '400px',
-    height: '450px',
+    width: '450px',
+    height: '550px',
     backgroundColor: '#213A57',
     padding: '25px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
@@ -101,7 +101,7 @@ const styles = {
     overflow: 'hidden',
   },
   scrollContainer: {
-    maxHeight: '300px',
+    maxHeight: '350px',
     overflowY: 'scroll',
     scrollbarWidth: 'thin',
     scrollbarColor: '#cedff0 #f1f1f1',
@@ -111,7 +111,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '15px 0',
+    margin: '10px 0',
   },
   gaugeContainer: {
     width: '80px',

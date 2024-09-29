@@ -8,7 +8,7 @@ import {
   Legend,
   PointElement,
   LineController,
-  LineElement 
+  LineElement
 } from 'chart.js';
 
 Chart.register(
@@ -17,7 +17,7 @@ Chart.register(
   Legend,
   PointElement,
   LineController,
-  LineElement 
+  LineElement
 );
 
 const GaugeChart = ({ data = {} }) => {
@@ -62,12 +62,12 @@ const GaugeChart = ({ data = {} }) => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Skills Overview</h2>
+      <h2 style={styles.title}>Performance Level</h2>
       <div style={styles.radarContainer}>
         <Radar data={radarData} options={radarOptions} />
       </div>
       <div style={styles.gaugeContainer}>
-      <p style={styles.overheatingText}>OVERHEATING ISSUE</p>
+        <p style={styles.overheatingText}>Overheating Issues</p>
         <div style={styles.gaugeItem}>
           <Gauge
             id="gauge-chart-1"
@@ -95,10 +95,10 @@ const GaugeChart = ({ data = {} }) => {
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
-            textColor="#000" 
+            textColor="#000"
             needleColor='#cfcccc'
             style={styles.gauge}
-            textStyle={styles.gaugeText} 
+            textStyle={styles.gaugeText}
           />
           <p style={styles.gaugeLabel}>GPU</p>
         </div>
@@ -115,11 +115,11 @@ const GaugeChart = ({ data = {} }) => {
             textColor="#000"
             needleColor='#cfcccc'
             style={styles.gauge}
-            textStyle={styles.gaugeText} 
+            textStyle={styles.gaugeText}
           />
           <p style={styles.gaugeLabel}>SYSTEM</p>
         </div>
-        
+
       </div>
     </div>
   );
@@ -138,7 +138,7 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start', 
+    alignItems: 'flex-start',
     marginTop: '30px',
     padding: '20px',
     gap: '30px',
@@ -162,7 +162,7 @@ const styles = {
     borderRadius: '12px',
     padding: '20px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-    marginLeft: '200px', 
+    marginLeft: '200px',
   },
   gaugeContainer: {
     display: 'flex',
@@ -187,8 +187,8 @@ const styles = {
     borderRadius: '50%',
     padding: '10px',
     boxShadow: 'none',
-    backgroundColor: 'transparent', 
-    fontWeight:'bold',
+    backgroundColor: 'transparent',
+    fontWeight: 'bold',
   },
   gaugeText: {
     fontSize: '20px',

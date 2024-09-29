@@ -16,7 +16,7 @@ const styles = {
   featuresSection: {
     position: 'relative',
     color: '#fff',
-     },
+  },
   container: {
     position: 'relative',
   },
@@ -27,4 +27,3 @@ const styles = {
 };
 
 export default Features;
-  
