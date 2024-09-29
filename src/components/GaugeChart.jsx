@@ -28,7 +28,7 @@ const GaugeChart = ({ data = {} }) => {
       ['Data Storage', '(SSD)'],
       ['Rendering', '(Graphics)'],
       ['Data Transfer Speed', '(Memory)'],
-      ['PowerCapacity', '(Powersupply)']
+      ['PowerCapacity', '(PowerSupply)']
     ],
     datasets: [
       {

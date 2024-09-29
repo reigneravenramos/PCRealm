@@ -79,7 +79,7 @@ hr {
   text-align   : center;
   position     : relative;
   background   : #1e7a46;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border       : 0;
 }
 
@@ -284,7 +284,7 @@ header .intro-text {
 
 /* Features Section */
 #features {
-  background: #213A57;
+  background: #10151D;
   
 }
 

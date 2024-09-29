@@ -3,9 +3,20 @@
     "title": "Looking for pc parts? ",
     "paragraph": "PCRealm is here to help you!"
   },
-  
-    "GaugeChart": {
-      "skills": ["Computing (Processor)", "Data Storage(SSD)", "Rendering(Graphics)", "Data Transfer Speed(Memory)", "PowerCapacity(Powersupply)"],
-      "values": [95, 90, 90, 80, 90]
-    }
+  "GaugeChart": {
+    "skills": [
+      "Computing (Processor)",
+      "Data Storage(SSD)",
+      "Rendering(Graphics)",
+      "Data Transfer Speed(Memory)",
+      "PowerCapacity(Powersupply)"
+    ],
+    "values": [
+      95,
+      90,
+      90,
+      80,
+      90
+    ]
+  }
 }
