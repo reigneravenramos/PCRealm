@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Gauge = ({ value }) => {
   return (
     <div style={styles.gaugeContainer}>
-      <div style={{ ...styles.gauge, backgroundColor: '#007bff' }}>
+      <div style={{ ...styles.gauge, backgroundColor: '#91acba' }}>
         {value}
       </div>
     </div>
@@ -133,7 +133,7 @@ const styles = {
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
   },
   arrowButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#91acba',
     color: '#fff',
     border: 'none',
     borderRadius: '50%',
@@ -178,7 +178,7 @@ const styles = {
   button: {
     width: '30%',
     padding: '10px',
-    backgroundColor: '#0B6477',
+    backgroundColor: '#007bff',
     color: '#fff',
     border: 'none',
     borderRadius: '6px',

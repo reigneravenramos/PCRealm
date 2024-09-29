@@ -22,6 +22,7 @@ const styles = {
   },
   title: {
     marginTop: '70px',
+    color: '#fff',
   },
 };
 
