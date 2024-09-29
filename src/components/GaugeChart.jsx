@@ -23,7 +23,13 @@ Chart.register(
 const GaugeChart = ({ data = {} }) => {
   // Data for the radar chart
   const radarData = {
-    labels: data.skills || ['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5'],
+    labels: [
+      ['Computing', '(Processor)'],
+      ['Data Storage', '(SSD)'],
+      ['Rendering', '(Graphics)'],
+      ['Data Transfer Speed', '(Memory)'],
+      ['PowerCapacity', '(Powersupply)']
+    ],
     datasets: [
       {
         label: 'Computer Radar',
@@ -40,6 +46,7 @@ const GaugeChart = ({ data = {} }) => {
     scales: {
       r: {
         ticks: {
+          display: false,  // Hide the tick labels (95, 90, etc.)
           beginAtZero: true,
           max: 100,
           color: '#333',
@@ -54,10 +61,22 @@ const GaugeChart = ({ data = {} }) => {
         angleLines: {
           color: '#aaa',
         },
+        pointLabels: {
+          color: '#fff', // Change the color of the labels (skills) around the radar chart
+          font: {
+            size: 14,
+            weight: 'bold',
+          },
+        },
       },
     },
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false, // Disable the legend
+      },
+    },
   };
 
   return (
@@ -79,7 +98,7 @@ const GaugeChart = ({ data = {} }) => {
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
-            textColor="#000"
+            textColor="#fff"
             style={styles.gauge}
             textStyle={styles.gaugeText}
           />
@@ -95,7 +114,7 @@ const GaugeChart = ({ data = {} }) => {
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
-            textColor="#000"
+            textColor="#fff"
             needleColor='#cfcccc'
             style={styles.gauge}
             textStyle={styles.gaugeText}
@@ -112,7 +131,7 @@ const GaugeChart = ({ data = {} }) => {
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
-            textColor="#000"
+            textColor="#fff"
             needleColor='#cfcccc'
             style={styles.gauge}
             textStyle={styles.gaugeText}
@@ -130,9 +149,9 @@ const styles = {
 
   overheatingText: {
     marginTop: '20px',
-    fontSize: '18px', // Adjust the font size as needed
+    fontSize: '18px',
     fontWeight: 'bold',
-    color: '#e74c3c', // Optional: Change color to indicate importance
+    color: '#fff',
   },
 
   container: {
@@ -143,7 +162,7 @@ const styles = {
     padding: '20px',
     gap: '30px',
     width: '100%',
-    backgroundColor: '#f4f7fa',
+    backgroundColor: '#AFDFEE',
     borderRadius: '12px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
   },
@@ -158,7 +177,7 @@ const styles = {
     width: '80%',
     maxWidth: '600px',
     height: '400px',
-    backgroundColor: '#fff',
+    backgroundColor: '#213A57',
     borderRadius: '12px',
     padding: '20px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
@@ -171,7 +190,7 @@ const styles = {
     maxWidth: '600px',
     marginTop: '1px',
     padding: '20px',
-    backgroundColor: '#fff',
+    backgroundColor: '#213A57',
     borderRadius: '12px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
     marginLeft: '200px',
@@ -192,7 +211,7 @@ const styles = {
   },
   gaugeText: {
     fontSize: '20px',
-    fill: '#000',
+    fill: '#fff',
     fontWeight: 'bold',
     transform: 'translateY(100px)',
   },
@@ -200,7 +219,7 @@ const styles = {
     marginTop: '10px',
     fontSize: '16px',
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
   },
 };
 
