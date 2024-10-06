@@ -17,11 +17,13 @@ const styles = {
     position: 'relative',
     color: '#fff',
   },
+
   container: {
     position: 'relative',
   },
+
   title: {
-    marginTop: '70px',
+    marginTop: '30px',
     color: '#fff',
   },
 };

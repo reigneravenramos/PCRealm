@@ -89,7 +89,7 @@ const styles = {
   sideNav: {
     position: 'absolute',
     right: '30px',
-    top: '85vw',
+    top: '79vw',
     width: '450px',
     height: '550px',
     backgroundColor: '#213A57',
@@ -100,6 +100,7 @@ const styles = {
     fontFamily: '"Helvetica Neue", sans-serif',
     overflow: 'hidden',
   },
+
   scrollContainer: {
     maxHeight: '350px',
     overflowY: 'scroll',
@@ -107,12 +108,14 @@ const styles = {
     scrollbarColor: '#cedff0 #f1f1f1',
     paddingRight: '10px',
   },
+
   carouselContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     margin: '10px 0',
   },
+
   gaugeContainer: {
     width: '80px',
     height: '80px',
@@ -121,6 +124,7 @@ const styles = {
     justifyContent: 'center',
     margin: '0 10px',
   },
+
   gauge: {
     width: '80px',
     height: '80px',

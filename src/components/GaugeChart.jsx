@@ -158,14 +158,14 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    marginTop: '30px',
     padding: '20px',
     gap: '30px',
     width: '100%',
+    height: '140%',
     backgroundColor: '#AFDFEE',
-    borderRadius: '12px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
   },
+
   title: {
     fontSize: '28px',
     fontWeight: 'bold',
@@ -173,6 +173,7 @@ const styles = {
     marginBottom: '20px',
     marginLeft: '380px',
   },
+
   radarContainer: {
     width: '80%',
     maxWidth: '600px',
