@@ -1,24 +1,61 @@
 import React, { useState } from "react";
 
-const Gauge = ({ value }) => {
+// Import images from the assets folder
+import gamingImage1 from '../assets/gaming/cpu-gaming.png';
+import gamingImage2 from '../assets/gaming/gpu-gaming.png';
+import gamingImage3 from '../assets/gaming/ram-gaming.png';
+import gamingImage4 from '../assets/gaming/motherboard-gaming.png';
+import gamingImage5 from '../assets/gaming/powersupply-gaming.png';
+
+// import schoolImage1 from '../assets/school/cpu-school.png';
+// import schoolImage2 from '../assets/school/gpu-school.png';
+// import schoolImage3 from '../assets/school/ram-school.png';
+// import schoolImage4 from '../assets/school/motherboard-school.png';
+// import schoolImage5 from '../assets/school/powersupply-school.png';
+
+// import workImage1 from '../assets/work/cpu-work.png';
+// import workImage2 from '../assets/work/gpu-work.png';
+// import workImage3 from '../assets/work/ram-work.png';
+// import workImage4 from '../assets/work/motherboard-work.png';
+// import workImage4 from '../assets/work/powersupply-work.png';
+
+const Gauge = ({ imageSrc, label }) => {
   return (
     <div style={styles.gaugeContainer}>
-      <div style={{ ...styles.gauge, backgroundColor: '#91acba' }}>
-        {value}
-      </div>
+      <img src={imageSrc} alt="carousel item" style={styles.gaugeImage} />
+      <span style={styles.gaugeLabel}>{label}</span>
     </div>
   );
 };
 
 export const SideNavigation = () => {
   const [inputValue, setInputValue] = useState("");
-  const [dropdownValue, setDropdownValue] = useState("option1");
-  const [currentFigures, setCurrentFigures] = useState([0, 0, 0, 0]); // Track each gauge's index
+  const [dropdownValue, setDropdownValue] = useState("gaming");
+  const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4]); // Set initial figures to show unique images
 
+  // Use the imported images and labels for the gauge values
   const gaugeValues = {
-    option1: [1, 2, 3, 4],
-    option2: [4, 5, 6, 8],
-    option3: [7, 8, 9, 12],
+    gaming: [
+      { img: gamingImage1, label: "Gaming CPU" },
+      { img: gamingImage2, label: "Gaming GPU" },
+      { img: gamingImage3, label: "Gaming RAM" },
+      { img: gamingImage4, label: "Gaming MoB" },
+      { img: gamingImage5, label: "Gaming PoS" }
+    ],
+    school: [
+      { img: gamingImage1, label: "School CPU" },
+      { img: gamingImage2, label: "School GPU" },
+      { img: gamingImage3, label: "School RAM" },
+      { img: gamingImage4, label: "School MoB" },
+      { img: gamingImage5, label: "School PoS" }
+    ],
+    work: [
+      { img: gamingImage1, label: "Work CPU" },
+      { img: gamingImage2, label: "Work GPU" },
+      { img: gamingImage3, label: "Work RAM" },
+      { img: gamingImage4, label: "Work MoB" },
+      { img: gamingImage5, label: "Work Pos" }
+    ],
   };
 
   const handleInputChange = (e) => {
@@ -27,7 +64,10 @@ export const SideNavigation = () => {
 
   const handleDropdownChange = (e) => {
     setDropdownValue(e.target.value);
-    setCurrentFigures([0, 0, 0]); // Reset all to the first figure
+
+    // Reset the currentFigures array to match the number of images for the selected dropdown
+    const resetFigures = Array(gaugeValues[e.target.value].length).fill(0).map((_, index) => index);
+    setCurrentFigures(resetFigures); // This will ensure each image has a unique index
   };
 
   const handleSubmit = () => {
@@ -65,18 +105,21 @@ export const SideNavigation = () => {
           onChange={handleDropdownChange}
           style={styles.dropdown}
         >
-          <option value="option1">Gaming</option>
-          <option value="option2">School</option>
-          <option value="option3">Work</option>
+          <option value="gaming">Gaming</option>
+          <option value="school">School</option>
+          <option value="work">Work</option>
         </select>
         <button onClick={handleSubmit} style={styles.button}>Generate</button>
       </div>
 
       <div style={styles.scrollContainer}>
-        {Array.from({ length: 4 }).map((_, index) => (
+        {currentFigures.map((figureIndex, index) => (
           <div key={index} style={styles.carouselContainer}>
             <button onClick={() => prevFigure(index)} style={styles.arrowButton}>&lt;</button>
-            <Gauge value={gaugeValues[dropdownValue][currentFigures[index]]} />
+            <Gauge
+              imageSrc={gaugeValues[dropdownValue][figureIndex].img}
+              label={gaugeValues[dropdownValue][figureIndex].label}
+            />
             <button onClick={() => nextFigure(index)} style={styles.arrowButton}>&gt;</button>
           </div>
         ))}
@@ -84,6 +127,7 @@ export const SideNavigation = () => {
     </div>
   );
 };
+
 
 const styles = {
   sideNav: {
@@ -102,7 +146,7 @@ const styles = {
   },
 
   scrollContainer: {
-    maxHeight: '350px',
+    maxHeight: '380px',
     overflowY: 'scroll',
     scrollbarWidth: 'thin',
     scrollbarColor: '#cedff0 #f1f1f1',
@@ -117,25 +161,26 @@ const styles = {
   },
 
   gaugeContainer: {
-    width: '80px',
-    height: '80px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     margin: '0 10px',
   },
 
-  gauge: {
+  gaugeImage: {
     width: '80px',
     height: '80px',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '24px',
-    color: '#ffffff',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    borderRadius: '20%',
+    objectFit: 'cover',
   },
+
+  gaugeLabel: {
+    marginLeft: '10px',
+    fontSize: '16px',
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+
   arrowButton: {
     backgroundColor: '#91acba',
     color: '#fff',
@@ -193,26 +238,5 @@ const styles = {
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
   },
 };
-
-const scrollbarStyles = `
-  .scrollContainer::-webkit-scrollbar {
-    width: 8px;
-  }
-  .scrollContainer::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  .scrollContainer::-webkit-scrollbar-thumb {
-    background-color: #83868a;
-    border-radius: 10px;
-  }
-  .scrollContainer::-webkit-scrollbar-thumb:hover {
-    background-color: #707579;
-  }
-`;
-
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = scrollbarStyles;
-document.head.appendChild(styleSheet);
 
 export default SideNavigation;
