@@ -6,18 +6,27 @@ import gamingImage2 from '../assets/gaming/gpu-gaming.png';
 import gamingImage3 from '../assets/gaming/ram-gaming.png';
 import gamingImage4 from '../assets/gaming/motherboard-gaming.png';
 import gamingImage5 from '../assets/gaming/powersupply-gaming.png';
+import gamingImage6 from '../assets/gaming/ssd-gaming.png';
+import gamingImage7 from '../assets/gaming/fan-gaming.png';
+import gamingImage8 from '../assets/gaming/cooler-gaming.png';
 
 // import schoolImage1 from '../assets/school/cpu-school.png';
 // import schoolImage2 from '../assets/school/gpu-school.png';
 // import schoolImage3 from '../assets/school/ram-school.png';
 // import schoolImage4 from '../assets/school/motherboard-school.png';
 // import schoolImage5 from '../assets/school/powersupply-school.png';
+// import schoolImage5 from '../assets/school/ssd-school.png';
+// import schoolImage5 from '../assets/school/fan-school.png';
+// import schoolImage5 from '../assets/school/cooler-school.png';
 
 // import workImage1 from '../assets/work/cpu-work.png';
 // import workImage2 from '../assets/work/gpu-work.png';
 // import workImage3 from '../assets/work/ram-work.png';
 // import workImage4 from '../assets/work/motherboard-work.png';
 // import workImage4 from '../assets/work/powersupply-work.png';
+// import workImage4 from '../assets/work/ssd-work.png';
+// import workImage4 from '../assets/work/fan-work.png';
+// import workImage4 from '../assets/work/cooler-work.png';
 
 const Gauge = ({ imageSrc, label }) => {
   return (
@@ -31,7 +40,7 @@ const Gauge = ({ imageSrc, label }) => {
 export const SideNavigation = () => {
   const [inputValue, setInputValue] = useState("");
   const [dropdownValue, setDropdownValue] = useState("gaming");
-  const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4]); // Set initial figures to show unique images
+  const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4, 5, 6, 7]); // Set initial figures to show unique images
 
   // Use the imported images and labels for the gauge values
   const gaugeValues = {
@@ -40,21 +49,30 @@ export const SideNavigation = () => {
       { img: gamingImage2, label: "Gaming GPU" },
       { img: gamingImage3, label: "Gaming RAM" },
       { img: gamingImage4, label: "Gaming MoB" },
-      { img: gamingImage5, label: "Gaming PoS" }
+      { img: gamingImage5, label: "Gaming PoS" },
+      { img: gamingImage6, label: "Gaming SSD" },
+      { img: gamingImage7, label: "Gaming Fan" },
+      { img: gamingImage8, label: "Gaming Col" }
     ],
     school: [
       { img: gamingImage1, label: "School CPU" },
       { img: gamingImage2, label: "School GPU" },
       { img: gamingImage3, label: "School RAM" },
       { img: gamingImage4, label: "School MoB" },
-      { img: gamingImage5, label: "School PoS" }
+      { img: gamingImage5, label: "School PoS" },
+      { img: gamingImage6, label: "School SSD" },
+      { img: gamingImage7, label: "School Fan" },
+      { img: gamingImage8, label: "School Col" }
     ],
     work: [
       { img: gamingImage1, label: "Work CPU" },
       { img: gamingImage2, label: "Work GPU" },
       { img: gamingImage3, label: "Work RAM" },
       { img: gamingImage4, label: "Work MoB" },
-      { img: gamingImage5, label: "Work Pos" }
+      { img: gamingImage5, label: "Work Pos" },
+      { img: gamingImage6, label: "Work SSD" },
+      { img: gamingImage7, label: "Work Fan" },
+      { img: gamingImage8, label: "Work Col" }
     ],
   };
 
@@ -97,7 +115,7 @@ export const SideNavigation = () => {
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder="Enter Budget"
+          placeholder="Enter your budget"
           style={styles.textField}
         />
         <select
@@ -132,10 +150,11 @@ export const SideNavigation = () => {
 const styles = {
   sideNav: {
     position: 'absolute',
-    right: '30px',
-    top: '79vw',
-    width: '450px',
-    height: '550px',
+    right: '10vw',
+    top: '64vw',
+    width: '80vw',
+    maxWidth: '480px',
+    height: 'auto',
     backgroundColor: '#213A57',
     padding: '25px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
@@ -146,7 +165,7 @@ const styles = {
   },
 
   scrollContainer: {
-    maxHeight: '380px',
+    maxHeight: '450px',
     overflowY: 'scroll',
     scrollbarWidth: 'thin',
     scrollbarColor: '#cedff0 #f1f1f1',
@@ -157,7 +176,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '10px 0',
+    margin: '20px 0',
   },
 
   gaugeContainer: {
@@ -168,28 +187,28 @@ const styles = {
   },
 
   gaugeImage: {
-    width: '80px',
-    height: '80px',
+    width: '60px',
+    height: '60px',
     borderRadius: '20%',
     objectFit: 'cover',
   },
 
   gaugeLabel: {
     marginLeft: '10px',
-    fontSize: '16px',
+    fontSize: '14px',
     color: '#ffffff',
     fontWeight: 'bold',
   },
 
   arrowButton: {
-    backgroundColor: '#91acba',
-    color: '#fff',
+    backgroundColor: '#08a7a0',
+    color: '#000',
     border: 'none',
     borderRadius: '50%',
-    width: '40px',
-    height: '40px',
+    width: '30px',
+    height: '30px',
     cursor: 'pointer',
-    fontSize: '20px',
+    fontSize: '16px',
     transition: 'background-color 0.3s ease',
     display: 'flex',
     alignItems: 'center',
@@ -202,11 +221,11 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: '10px',
-    marginBottom: '30px',
+    marginBottom: '20px',
   },
   dropdown: {
-    width: '35%',
-    padding: '10px',
+    width: '40%',
+    padding: '8px',
     borderRadius: '6px',
     border: '1px solid #ddd',
     backgroundColor: '#f9f9f9',
@@ -215,8 +234,8 @@ const styles = {
     outline: 'none',
   },
   textField: {
-    width: '50%',
-    padding: '10px',
+    width: '40%',
+    padding: '8px',
     borderRadius: '6px',
     border: '1px solid #ddd',
     backgroundColor: '#f9f9f9',
@@ -225,18 +244,44 @@ const styles = {
     outline: 'none',
   },
   button: {
-    width: '30%',
-    padding: '10px',
+    width: '25%',
+    padding: '9px',
     backgroundColor: '#0B6477',
     color: '#fff',
     border: 'none',
-    borderRadius: '6px',
+    borderRadius: '10px',
     cursor: 'pointer',
     fontSize: '14px',
     fontWeight: '600',
     transition: 'background-color 0.3s ease',
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
   },
+
+  // Media query for smaller screens
+  '@media (max-width: 768px)': {
+    sideNav: {
+      width: '100vw',
+      right: '0',
+      top: 'auto',
+      bottom: '0',
+      height: 'auto',
+      padding: '15px',
+    },
+    gaugeImage: {
+      width: '50px',
+      height: '50px',
+    },
+    arrowButton: {
+      width: '25px',
+      height: '25px',
+      fontSize: '14px',
+    },
+    formContainer: {
+      flexDirection: 'column',
+      gap: '5px',
+    },
+  },
+
 };
 
 export default SideNavigation;

@@ -25,10 +25,10 @@ const GaugeChart = ({ data = {} }) => {
   const radarData = {
     labels: [
       ['Computing', '(Processor)'],
-      ['Data Storage', '(SSD)'],
       ['Rendering', '(Graphics)'],
       ['Data Transfer Speed', '(Memory)'],
-      ['PowerCapacity', '(PowerSupply)']
+      ['Power Capacity', '(PowerSupply)'],
+      ['Data Storage', '(SSD)']
     ],
     datasets: [
       {
@@ -43,6 +43,14 @@ const GaugeChart = ({ data = {} }) => {
 
   // Options for the radar chart
   const radarOptions = {
+    layout: {
+      padding: {
+        top: 18, // Add some padding at the top
+        bottom: 30, // Add padding at the bottom
+        left: 30, // Adjust padding on the left
+        right: 30, // Adjust padding on the right
+      },
+    },
     scales: {
       r: {
         ticks: {
@@ -81,8 +89,8 @@ const GaugeChart = ({ data = {} }) => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Performance Level</h2>
       <div style={styles.radarContainer}>
+      <p style={styles.title}>Performance Level</p>
         <Radar data={radarData} options={radarOptions} />
       </div>
       <div style={styles.gaugeContainer}>
@@ -152,6 +160,8 @@ const styles = {
     fontSize: '18px',
     fontWeight: 'bold',
     color: '#fff',
+    marginBottom: '10px',
+    textAlign: 'center',
   },
 
   container: {
@@ -167,22 +177,29 @@ const styles = {
   },
 
   title: {
-    fontSize: '28px',
+    fontSize: '26px',
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
     marginBottom: '20px',
-    marginLeft: '380px',
+    marginLeft: '150px',
   },
 
   radarContainer: {
-    width: '80%',
+    width: '100%',
     maxWidth: '600px',
-    height: '400px',
+    height: '450px',
     backgroundColor: '#213A57',
     borderRadius: '12px',
-    padding: '20px',
+    padding: '40px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-    marginLeft: '200px',
+    marginLeft: '150px',
+  },
+  gaugeSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    marginTop: '20px', // Add spacing above the gauges
   },
   gaugeContainer: {
     display: 'flex',
@@ -194,7 +211,7 @@ const styles = {
     backgroundColor: '#213A57',
     borderRadius: '12px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-    marginLeft: '200px',
+    marginLeft: '150px',
   },
   gaugeItem: {
     display: 'flex',

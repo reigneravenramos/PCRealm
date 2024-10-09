@@ -6,10 +6,10 @@
   "GaugeChart": {
     "skills": [
       "Computing (Processor)",
-      "Data Storage(SSD)",
+      "PowerCapacity(Powersupply)",
       "Rendering(Graphics)",
       "Data Transfer Speed(Memory)",
-      "PowerCapacity(Powersupply)"
+      "Data Storage(SSD)"
     ],
     "values": [
       95,
