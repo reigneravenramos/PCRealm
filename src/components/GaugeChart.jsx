@@ -45,7 +45,7 @@ const GaugeChart = ({ data = {} }) => {
   const radarOptions = {
     layout: {
       padding: {
-        top: 18, // Add some padding at the top
+        top: 12, // Add some padding at the top
         bottom: 30, // Add padding at the bottom
         left: 30, // Adjust padding on the left
         right: 30, // Adjust padding on the right
@@ -171,7 +171,7 @@ const styles = {
     padding: '20px',
     gap: '30px',
     width: '100%',
-    height: '140%',
+    height: '142%',
     backgroundColor: '#AFDFEE',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
   },

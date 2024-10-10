@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // Import images from the assets folder
-import gamingImage1 from '../assets/gaming/cpu-gaming.png';
+import gamingImage1 from '../assets/gaming/processor-gaming.png';
 import gamingImage2 from '../assets/gaming/gpu-gaming.png';
 import gamingImage3 from '../assets/gaming/ram-gaming.png';
 import gamingImage4 from '../assets/gaming/motherboard-gaming.png';
@@ -10,14 +10,14 @@ import gamingImage6 from '../assets/gaming/ssd-gaming.png';
 import gamingImage7 from '../assets/gaming/fan-gaming.png';
 import gamingImage8 from '../assets/gaming/cooler-gaming.png';
 
-// import schoolImage1 from '../assets/school/cpu-school.png';
-// import schoolImage2 from '../assets/school/gpu-school.png';
-// import schoolImage3 from '../assets/school/ram-school.png';
-// import schoolImage4 from '../assets/school/motherboard-school.png';
-// import schoolImage5 from '../assets/school/powersupply-school.png';
-// import schoolImage5 from '../assets/school/ssd-school.png';
-// import schoolImage5 from '../assets/school/fan-school.png';
-// import schoolImage5 from '../assets/school/cooler-school.png';
+import schoolImage1 from '../assets/school/processor-school-mid.png';
+import schoolImage2 from '../assets/school/gpu-school-mid.png';
+import schoolImage3 from '../assets/school/ram-school-mid.png';
+import schoolImage4 from '../assets/school/motherboard-school-mid.png';
+import schoolImage5 from '../assets/school/powersupply-school-mid.png';
+import schoolImage6 from '../assets/school/ssd-school-mid.png';
+import schoolImage7 from '../assets/school/fan-school-mid.png';
+import schoolImage8 from '../assets/school/cooler-school-mid.png';
 
 // import workImage1 from '../assets/work/cpu-work.png';
 // import workImage2 from '../assets/work/gpu-work.png';
@@ -55,14 +55,14 @@ export const SideNavigation = () => {
       { img: gamingImage8, label: "Gaming Col" }
     ],
     school: [
-      { img: gamingImage1, label: "School CPU" },
-      { img: gamingImage2, label: "School GPU" },
-      { img: gamingImage3, label: "School RAM" },
-      { img: gamingImage4, label: "School MoB" },
-      { img: gamingImage5, label: "School PoS" },
-      { img: gamingImage6, label: "School SSD" },
-      { img: gamingImage7, label: "School Fan" },
-      { img: gamingImage8, label: "School Col" }
+      { img: schoolImage1, label: "School CPU" },
+      { img: schoolImage2, label: "School GPU" },
+      { img: schoolImage3, label: "School RAM" },
+      { img: schoolImage4, label: "School MoB" },
+      { img: schoolImage5, label: "School PoS" },
+      { img: schoolImage6, label: "School SSD" },
+      { img: schoolImage7, label: "School Fan" },
+      { img: schoolImage8, label: "School Col" }
     ],
     work: [
       { img: gamingImage1, label: "Work CPU" },
@@ -187,8 +187,8 @@ const styles = {
   },
 
   gaugeImage: {
-    width: '60px',
-    height: '60px',
+    width: '65px',
+    height: '65px',
     borderRadius: '20%',
     objectFit: 'cover',
   },
