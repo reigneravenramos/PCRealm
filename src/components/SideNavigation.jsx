@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 
+// Default Images (you'll need to create or source these)
+import defaultImage1 from '../assets/default/processor-default.png';
+import defaultImage2 from '../assets/default/gpu-default.png';
+import defaultImage3 from '../assets/default/ram-default.png';
+import defaultImage4 from '../assets/default/motherboard-default.png';
+import defaultImage5 from '../assets/default/powersupply-default.png';
+import defaultImage6 from '../assets/default/ssd-default.png';
+import defaultImage7 from '../assets/default/fan-default.png';
+import defaultImage8 from '../assets/default/cooler-default.png';
+
 // Gaming Images
 import gamingImage1 from '../assets/gaming/processor-gaming.png';
 import gamingImage2 from '../assets/gaming/gpu-gaming.png';
@@ -45,6 +55,16 @@ export const SideNavigation = () => {
   const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
 
   const gaugeValues = {
+    default: [
+      { img: defaultImage1, label: "Default CPU" },
+      { img: defaultImage2, label: "Default GPU" },
+      { img: defaultImage3, label: "Default RAM" },
+      { img: defaultImage4, label: "Default MoB" },
+      { img: defaultImage5, label: "Default PoS" },
+      { img: defaultImage6, label: "Default SSD" },
+      { img: defaultImage7, label: "Default Fan" },
+      { img: defaultImage8, label: "Default Col" }
+    ],
     gaming: [
       { img: gamingImage1, label: "Gaming CPU" },
       { img: gamingImage2, label: "Gaming GPU" },
@@ -78,7 +98,7 @@ export const SideNavigation = () => {
   };
 
   const getDisplayedGaugeValues = () => {
-    return dropdownValue ? gaugeValues[dropdownValue] : gaugeValues.gaming;
+    return dropdownValue ? gaugeValues[dropdownValue] : gaugeValues.default;
   };
 
   const handleInputChange = (e) => {
