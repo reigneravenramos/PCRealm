@@ -90,7 +90,7 @@ const GaugeChart = ({ data = {} }) => {
   return (
     <div style={styles.container}>
       <div style={styles.radarContainer}>
-      <p style={styles.title}>Performance Level</p>
+        <p style={styles.title}>Performance Level</p>
         <Radar data={radarData} options={radarOptions} />
       </div>
       <div style={styles.gaugeContainer}>

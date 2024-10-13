@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// Default Images (you'll need to create or source these)
+// Default Images
 import defaultImage1 from '../assets/default/processor-default.png';
 import defaultImage2 from '../assets/default/gpu-default.png';
 import defaultImage3 from '../assets/default/ram-default.png';
@@ -21,7 +21,7 @@ import gamingImage7 from '../assets/gaming/fan-gaming.png';
 import gamingImage8 from '../assets/gaming/cooler-gaming.png';
 
 // School Images
-import schoolImage1 from '../assets/school/processor-school-mid.png';
+import schoolImage1 from '../assets/school/processor-school.png';
 import schoolImage2 from '../assets/school/gpu-school-mid.png';
 import schoolImage3 from '../assets/school/ram-school-mid.png';
 import schoolImage4 from '../assets/school/motherboard-school-mid.png';
@@ -197,7 +197,7 @@ const styles = {
     right: '10vw',
     top: '64vw',
     width: '80vw',
-    maxWidth: '480px',
+    maxWidth: '500px',
     height: 'auto',
     backgroundColor: '#213A57',
     padding: '25px',
