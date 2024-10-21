@@ -53,8 +53,9 @@ export const SideNavigation = () => {
   const [inputValue, setInputValue] = useState("");
   const [dropdownValue, setDropdownValue] = useState("");
   const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
+  const [gaugeValues, setGaugeValues] = useState([0.75, 0.50, 0.25]); // Initial gauge values
 
-  const gaugeValues = {
+  const gaugeOptions = {
     default: [
       { img: defaultImage1, label: "Default CPU" },
       { img: defaultImage2, label: "Default GPU" },
@@ -90,7 +91,7 @@ export const SideNavigation = () => {
       { img: workImage2, label: "Work GPU" },
       { img: workImage3, label: "Work RAM" },
       { img: workImage4, label: "Work MoB" },
-      { img: workImage5, label: "Work Pos" },
+      { img: workImage5, label: "Work PoS" },
       { img: workImage6, label: "Work SSD" },
       { img: workImage7, label: "Work Fan" },
       { img: workImage8, label: "Work Col" }
@@ -98,7 +99,7 @@ export const SideNavigation = () => {
   };
 
   const getDisplayedGaugeValues = () => {
-    return dropdownValue ? gaugeValues[dropdownValue] : gaugeValues.default;
+    return dropdownValue ? gaugeOptions[dropdownValue] : gaugeOptions.default;
   };
 
   const handleInputChange = (e) => {
@@ -106,20 +107,28 @@ export const SideNavigation = () => {
   };
 
   const handleDropdownChange = (e) => {
-    const newValue = e.target.value;
-    setDropdownValue(newValue);
+    setDropdownValue(e.target.value);
+    setCurrentFigures([0, 1, 2, 3, 4, 5, 6, 7]); // Reset figures on dropdown change
+  };
 
-    const resetFigures = Array(8).fill(0).map((_, index) => index);
-    setCurrentFigures(resetFigures);
+  const handleSimulation = () => {
+    // Generate random gauge values
+    const newGaugeValues = Array(3).fill().map(() => Math.random().toFixed(2));
+    setGaugeValues(newGaugeValues);
   };
 
   const handleSubmit = () => {
+    handleSimulation(); // Call the simulation function
     if (dropdownValue) {
       console.log(`Input: ${inputValue}, Dropdown: ${dropdownValue}`);
     } else {
       console.log("Please select a usage type before submitting");
     }
   };
+
+  const budget = parseInt(inputValue, 10);
+  const shouldDisplayGauges = dropdownValue && budget >= 10000 && budget <= 50000;
+  const message = budget < 10000 ? "No currently built PC. Please input a higher price." : "No PC build yet.";
 
   const nextFigure = (index) => {
     setCurrentFigures((prev) => {
@@ -143,7 +152,7 @@ export const SideNavigation = () => {
     <div style={styles.sideNav}>
       <div style={styles.formContainer}>
         <input
-          type="text"
+          type="number"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Enter your budget"
@@ -172,21 +181,33 @@ export const SideNavigation = () => {
         </button>
       </div>
 
-      <div style={styles.scrollContainer}>
-        {currentFigures.map((figureIndex, index) => {
-          const displayedValues = getDisplayedGaugeValues();
-          return (
-            <div key={index} style={styles.carouselContainer}>
-              <button onClick={() => prevFigure(index)} style={styles.arrowButton}>&lt;</button>
-              <Gauge
-                imageSrc={displayedValues[figureIndex].img}
-                label={displayedValues[figureIndex].label}
-              />
-              <button onClick={() => nextFigure(index)} style={styles.arrowButton}>&gt;</button>
-            </div>
-          );
-        })}
-      </div>
+      {shouldDisplayGauges ? (
+        <div style={styles.scrollContainer}>
+          {currentFigures.map((figureIndex, index) => {
+            const displayedValues = getDisplayedGaugeValues();
+            return (
+              <div key={index} style={styles.carouselContainer}>
+                <button onClick={() => prevFigure(index)} style={styles.arrowButton}>&lt;</button>
+                <Gauge
+                  imageSrc={displayedValues[figureIndex].img}
+                  label={displayedValues[figureIndex].label}
+                />
+                <button onClick={() => nextFigure(index)} style={styles.arrowButton}>&gt;</button>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div style={styles.messageContainer}>
+          {budget < 10000 || budget > 50000 ? message : ""}
+        </div>
+      )}
+
+      {shouldDisplayGauges && (
+        <div style={styles.totalContainer}>
+          <span style={styles.totalLabel}>Total Budget: ₱{budget.toLocaleString()}</span>
+        </div>
+      )}
     </div>
   );
 };
@@ -194,8 +215,8 @@ export const SideNavigation = () => {
 const styles = {
   sideNav: {
     position: 'absolute',
-    right: '10vw',
-    top: '64vw',
+    right: '5%',
+    top: '69vw',
     width: '80vw',
     maxWidth: '500px',
     height: 'auto',
@@ -293,6 +314,21 @@ const styles = {
     fontWeight: '600',
     transition: 'background-color 0.3s ease',
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+  },
+  messageContainer: {
+    color: '#ffffff',
+    marginTop: '20px',
+    fontSize: '16px',
+    textAlign: 'center',
+  },
+  totalContainer: {
+    color: '#ffffff',
+    marginTop: '20px',
+    fontSize: '18px',
+    textAlign: 'center',
+  },
+  totalLabel: {
+    fontWeight: 'bold',
   },
   '@media (max-width: 768px)': {
     sideNav: {

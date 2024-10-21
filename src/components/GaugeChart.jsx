@@ -45,16 +45,16 @@ const GaugeChart = ({ data = {} }) => {
   const radarOptions = {
     layout: {
       padding: {
-        top: 12, // Add some padding at the top
-        bottom: 30, // Add padding at the bottom
-        left: 30, // Adjust padding on the left
-        right: 30, // Adjust padding on the right
+        top: 12,
+        bottom: 30,
+        left: 30,
+        right: 30,
       },
     },
     scales: {
       r: {
         ticks: {
-          display: false,  // Hide the tick labels (95, 90, etc.)
+          display: false,
           beginAtZero: true,
           max: 100,
           color: '#333',
@@ -70,7 +70,7 @@ const GaugeChart = ({ data = {} }) => {
           color: '#aaa',
         },
         pointLabels: {
-          color: '#fff', // Change the color of the labels (skills) around the radar chart
+          color: '#fff',
           font: {
             size: 14,
             weight: 'bold',
@@ -82,7 +82,7 @@ const GaugeChart = ({ data = {} }) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false, // Disable the legend
+        display: false,
       },
     },
   };
@@ -92,7 +92,12 @@ const GaugeChart = ({ data = {} }) => {
       <div style={styles.radarContainer}>
         <p style={styles.title}>Performance Level</p>
         <Radar data={radarData} options={radarOptions} />
+        {/* Simulated Button on Radar Graph */}
+        <button style={styles.simulatedButton}>
+          Simulation
+        </button>
       </div>
+      
       <div style={styles.gaugeContainer}>
         <p style={styles.overheatingText}>Overheating Issues</p>
         <div style={styles.gaugeItem}>
@@ -146,7 +151,6 @@ const GaugeChart = ({ data = {} }) => {
           />
           <p style={styles.gaugeLabel}>SYSTEM</p>
         </div>
-
       </div>
     </div>
   );
@@ -154,7 +158,6 @@ const GaugeChart = ({ data = {} }) => {
 
 // Styles for the component
 const styles = {
-
   overheatingText: {
     marginTop: '20px',
     fontSize: '18px',
@@ -163,7 +166,6 @@ const styles = {
     marginBottom: '10px',
     textAlign: 'center',
   },
-
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -175,7 +177,6 @@ const styles = {
     backgroundColor: '#AFDFEE',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
   },
-
   title: {
     fontSize: '26px',
     fontWeight: 'bold',
@@ -183,7 +184,6 @@ const styles = {
     marginBottom: '20px',
     marginLeft: '150px',
   },
-
   radarContainer: {
     width: '100%',
     maxWidth: '600px',
@@ -193,13 +193,7 @@ const styles = {
     padding: '40px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
     marginLeft: '150px',
-  },
-  gaugeSection: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    marginTop: '20px', // Add spacing above the gauges
+    position: 'relative', // Enable absolute positioning for children
   },
   gaugeContainer: {
     display: 'flex',
@@ -238,6 +232,22 @@ const styles = {
     fontSize: '16px',
     fontWeight: 'bold',
     color: '#fff',
+  },
+  simulatedButton: {
+    position: 'absolute', // Position the button absolutely within the radarContainer
+    bottom: '390px', // Adjust as needed
+    left: '85%', // Center the button horizontally
+    transform: 'translateX(-50%)', // Adjust for centering
+    padding: '10px 20px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
+    transition: 'background-color 0.3s ease',
   },
 };
 
