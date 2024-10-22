@@ -92,12 +92,8 @@ const GaugeChart = ({ data = {} }) => {
       <div style={styles.radarContainer}>
         <p style={styles.title}>Performance Level</p>
         <Radar data={radarData} options={radarOptions} />
-        {/* Simulated Button on Radar Graph */}
-        <button style={styles.simulatedButton}>
-          Simulation
-        </button>
       </div>
-      
+
       <div style={styles.gaugeContainer}>
         <p style={styles.overheatingText}>Overheating Issues</p>
         <div style={styles.gaugeItem}>
@@ -193,7 +189,7 @@ const styles = {
     padding: '40px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
     marginLeft: '150px',
-    position: 'relative', // Enable absolute positioning for children
+    position: 'relative',
   },
   gaugeContainer: {
     display: 'flex',
@@ -234,10 +230,10 @@ const styles = {
     color: '#fff',
   },
   simulatedButton: {
-    position: 'absolute', // Position the button absolutely within the radarContainer
-    bottom: '390px', // Adjust as needed
-    left: '85%', // Center the button horizontally
-    transform: 'translateX(-50%)', // Adjust for centering
+    position: 'absolute',
+    bottom: '390px',
+    left: '85%',
+    transform: 'translateX(-50%)',
     padding: '10px 20px',
     backgroundColor: '#007bff',
     color: '#fff',

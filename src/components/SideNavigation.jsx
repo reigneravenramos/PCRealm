@@ -40,6 +40,7 @@ import workImage6 from '../assets/work/ssd-work.png';
 import workImage7 from '../assets/work/fan-work.png';
 import workImage8 from '../assets/work/cooler-work.png';
 
+// Displays an image with a corresponding label
 const Gauge = ({ imageSrc, label }) => {
   return (
     <div style={styles.gaugeContainer}>
@@ -50,11 +51,14 @@ const Gauge = ({ imageSrc, label }) => {
 };
 
 export const SideNavigation = () => {
+  // State variables for user input, dropdown selection, etc.
   const [inputValue, setInputValue] = useState("");
   const [dropdownValue, setDropdownValue] = useState("");
   const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
-  const [gaugeValues, setGaugeValues] = useState([0.75, 0.50, 0.25]); // Initial gauge values
+  const [gaugeValues, setGaugeValues] = useState([0.75, 0.50, 0.25]);
+  const [isGenerated, setIsGenerated] = useState(false);
 
+  // Data for different usage types with corresponding gauge options
   const gaugeOptions = {
     default: [
       { img: defaultImage1, label: "Default CPU" },
@@ -98,39 +102,66 @@ export const SideNavigation = () => {
     ],
   };
 
+  // Helper function to get displayed gauges based on dropdown selection
   const getDisplayedGaugeValues = () => {
-    return dropdownValue ? gaugeOptions[dropdownValue] : gaugeOptions.default;
+    if (!isGenerated) return [];
+    return gaugeOptions[dropdownValue] || gaugeOptions.default;
   };
 
+  // Handle user input 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+    setIsGenerated(false);
   };
 
+  // Handle dropdown changes
   const handleDropdownChange = (e) => {
     setDropdownValue(e.target.value);
-    setCurrentFigures([0, 1, 2, 3, 4, 5, 6, 7]); // Reset figures on dropdown change
+    setIsGenerated(false);
+    setCurrentFigures([0, 1, 2, 3, 4, 5, 6, 7]);
   };
 
+  // Function to generate random gauge values
   const handleSimulation = () => {
-    // Generate random gauge values
     const newGaugeValues = Array(3).fill().map(() => Math.random().toFixed(2));
     setGaugeValues(newGaugeValues);
   };
 
+  // Add the redirect
+  const handleSimulationRedirect = () => {
+    window.location.href = 'https://kurtpetrola.github.io/pcsd/';
+  };
+
+  // Handle form submission and validation
   const handleSubmit = () => {
-    handleSimulation(); // Call the simulation function
-    if (dropdownValue) {
+    if (isValidInput()) {
+      handleSimulation();
+      setIsGenerated(true);
       console.log(`Input: ${inputValue}, Dropdown: ${dropdownValue}`);
-    } else {
-      console.log("Please select a usage type before submitting");
     }
   };
 
+  // Function to check if input is valid
+  const isValidInput = () => {
+    const budget = parseInt(inputValue, 10);
+    return dropdownValue && budget >= 10000 && budget <= 67044.99;
+  };
+
+  // Calculate budget and determine if gauges should be displayed
   const budget = parseInt(inputValue, 10);
-  const shouldDisplayGauges = dropdownValue && budget >= 10000 && budget <= 50000;
-  const message = budget < 10000 ? "No currently built PC. Please input a higher price." : "No PC build yet.";
+  const shouldDisplayGauges = isGenerated && isValidInput();
+  const message = !inputValue
+    ? "Please enter a budget and select usage type."
+    : budget < 10000
+      ? "Budget must be at least ₱10,000."
+      : budget > 67044.99
+        ? "Budget cannot exceed ₱67,044.99."
+        : !dropdownValue
+          ? "Please select a usage type."
+          : "Click Generate to see PC components.";
 
   const nextFigure = (index) => {
+    // Update the current figure index for the specified gauge
     setCurrentFigures((prev) => {
       const newFigures = [...prev];
       const displayedValues = getDisplayedGaugeValues();
@@ -140,6 +171,7 @@ export const SideNavigation = () => {
   };
 
   const prevFigure = (index) => {
+    // Update the current figure index for the specified gauge
     setCurrentFigures((prev) => {
       const newFigures = [...prev];
       const displayedValues = getDisplayedGaugeValues();
@@ -172,46 +204,56 @@ export const SideNavigation = () => {
           onClick={handleSubmit}
           style={{
             ...styles.button,
-            opacity: dropdownValue ? 1 : 0.5,
-            cursor: dropdownValue ? 'pointer' : 'not-allowed',
+            opacity: isValidInput() ? 1 : 0.5,
+            cursor: isValidInput() ? 'pointer' : 'not-allowed',
           }}
-          disabled={!dropdownValue}
+          disabled={!isValidInput()}
         >
           Generate
         </button>
       </div>
 
       {shouldDisplayGauges ? (
-        <div style={styles.scrollContainer}>
-          {currentFigures.map((figureIndex, index) => {
-            const displayedValues = getDisplayedGaugeValues();
-            return (
-              <div key={index} style={styles.carouselContainer}>
-                <button onClick={() => prevFigure(index)} style={styles.arrowButton}>&lt;</button>
-                <Gauge
-                  imageSrc={displayedValues[figureIndex].img}
-                  label={displayedValues[figureIndex].label}
-                />
-                <button onClick={() => nextFigure(index)} style={styles.arrowButton}>&gt;</button>
-              </div>
-            );
-          })}
-        </div>
+        <>
+          <div style={styles.scrollContainer}>
+            {currentFigures.map((figureIndex, index) => {
+              const displayedValues = getDisplayedGaugeValues();
+              return (
+                <div key={index} style={styles.carouselContainer}>
+                  <button onClick={() => prevFigure(index)} style={styles.arrowButton}>&lt;</button>
+                  <Gauge
+                    imageSrc={displayedValues[figureIndex].img}
+                    label={displayedValues[figureIndex].label}
+                  />
+                  <button onClick={() => nextFigure(index)} style={styles.arrowButton}>&gt;</button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div style={styles.buttonContainer}>
+            <button
+              onClick={handleSimulationRedirect}
+              style={styles.simulationButton}
+            >
+              Simulation
+            </button>
+          </div>
+
+          <div style={styles.totalContainer}>
+            <span style={styles.totalLabel}>Total Budget: ₱{budget.toLocaleString()}</span>
+          </div>
+        </>
       ) : (
         <div style={styles.messageContainer}>
-          {budget < 10000 || budget > 50000 ? message : ""}
-        </div>
-      )}
-
-      {shouldDisplayGauges && (
-        <div style={styles.totalContainer}>
-          <span style={styles.totalLabel}>Total Budget: ₱{budget.toLocaleString()}</span>
+          {message}
         </div>
       )}
     </div>
   );
 };
 
+// Codes for styling 
 const styles = {
   sideNav: {
     position: 'absolute',
@@ -315,6 +357,23 @@ const styles = {
     transition: 'background-color 0.3s ease',
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
   },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20px',
+  },
+  simulationButton: {
+    padding: '10px 20px',
+    backgroundColor: '#08a7a0',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: '600',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+  },
   messageContainer: {
     color: '#ffffff',
     marginTop: '20px',
@@ -351,6 +410,9 @@ const styles = {
     formContainer: {
       flexDirection: 'column',
       gap: '5px',
+    },
+    simulationButton: {
+      padding: '8px'
     },
   },
 };
