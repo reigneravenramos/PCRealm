@@ -61,44 +61,44 @@ export const SideNavigation = () => {
   // Data for different usage types with corresponding gauge options
   const gaugeOptions = {
     default: [
-      { img: defaultImage1, label: "Default CPU" },
-      { img: defaultImage2, label: "Default GPU" },
-      { img: defaultImage3, label: "Default RAM" },
-      { img: defaultImage4, label: "Default MoB" },
-      { img: defaultImage5, label: "Default PoS" },
-      { img: defaultImage6, label: "Default SSD" },
-      { img: defaultImage7, label: "Default Fan" },
-      { img: defaultImage8, label: "Default Col" }
+      { img: defaultImage1, label: "Intel Core i5-14600KF 24mb 5.30GHz LGA 1700 14TH Gen Processor" },
+      { img: defaultImage2, label: "Gigabyte RTX 4070 Super Eagle OC 12GB Graphics Card " },
+      { img: defaultImage3, label: "Kingston Fury Beast RGB 32G 16x2 DDR5 5600MHz CL36 KF556C36BBEAK2-32" },
+      { img: defaultImage4, label: "Asus Prime A520M-K/CSM (AM4) Motherboard" },
+      { img: defaultImage5, label: "ACE 700W Black ATX Gaming PC PSU Power Supply " },
+      { img: defaultImage6, label: "Internal SSD - NVMe M.2 2280 - 500GB - Kioxia Exceria G2" },
+      { img: defaultImage7, label: "Corsair Air Series™ AF140 Quiet Edition High Airflow" },
+      { img: defaultImage8, label: "Cooler Master Hyper 620S Dual Tower ARGB CPU Air Cooler" }
     ],
     gaming: [
-      { img: gamingImage1, label: "Gaming CPU" },
-      { img: gamingImage2, label: "Gaming GPU" },
-      { img: gamingImage3, label: "Gaming RAM" },
-      { img: gamingImage4, label: "Gaming MoB" },
-      { img: gamingImage5, label: "Gaming PoS" },
-      { img: gamingImage6, label: "Gaming SSD" },
-      { img: gamingImage7, label: "Gaming Fan" },
-      { img: gamingImage8, label: "Gaming Col" }
+      { img: gamingImage1, label: "Intel Core i3-14100 14TH Gen Processor" },
+      { img: gamingImage2, label: "GeForce® GTX 1060 WINDFORCE OC 3G" },
+      { img: gamingImage3, label: "Ram Kingbank DDR4 PC 3200MHz 16GB" },
+      { img: gamingImage4, label: "Asus Prime H610M-K D4 ATX Motherboard" },
+      { img: gamingImage5, label: "ACE 700W Black ATX Gaming PC PSU Power Supply " },
+      { img: gamingImage6, label: "Kioxia RC10 RC20 SSD 1TB NVMe M.2  EXCERIA G2 RC20 Series" },
+      { img: gamingImage7, label: "Gaming FanCorsair Air Series™ AF140 Quiet Edition High Airflow" },
+      { img: gamingImage8, label: "Cooler Master Hyper 620S Dual Tower ARGB CPU Air Cooler" }
     ],
     school: [
-      { img: schoolImage1, label: "School CPU" },
-      { img: schoolImage2, label: "School GPU" },
-      { img: schoolImage3, label: "School RAM" },
-      { img: schoolImage4, label: "School MoB" },
-      { img: schoolImage5, label: "School PoS" },
-      { img: schoolImage6, label: "School SSD" },
-      { img: schoolImage7, label: "School Fan" },
-      { img: schoolImage8, label: "School Col" }
+      { img: schoolImage1, label: "Intel Core i3-10100F 10TH Gen Processor" },
+      { img: schoolImage2, label: "ASUS GeForce® GT 1030 2GB GDDR5" },
+      { img: schoolImage3, label: "Team Elite Vulcan Z 16GB 2x8 3200mHz Gray DDR4 Memory" },
+      { img: schoolImage4, label: "MSI Pro H510M-B (LGA 1200) DDR4 Motherboard" },
+      { img: schoolImage5, label: "EVGA 500 BR, 80+ BRONZE 500W" },
+      { img: schoolImage6, label: "WD Blue™ SN550 NVMe™ SSD-250GB" },
+      { img: schoolImage7, label: "PCcooler Corona RGB 120mm Case Fan" },
+      { img: schoolImage8, label: "PCcooler GI-UX4 CPU Cooler" }
     ],
     work: [
-      { img: workImage1, label: "Work CPU" },
-      { img: workImage2, label: "Work GPU" },
-      { img: workImage3, label: "Work RAM" },
-      { img: workImage4, label: "Work MoB" },
-      { img: workImage5, label: "Work PoS" },
-      { img: workImage6, label: "Work SSD" },
-      { img: workImage7, label: "Work Fan" },
-      { img: workImage8, label: "Work Col" }
+      { img: workImage1, label: "Intel Core I3-10105 3.7GHZ Comet Lake Quad-Core 10TH Gen Processor" },
+      { img: workImage2, label: "ASUS Phoenix GeForce® GTX 1650 4GB GDDR5" },
+      { img: workImage3, label: "G.Skill Ripjaws V 16GB Dual DDR4 3200Mhz CL16F4-3200C16D-16GVKB" },
+      { img: workImage4, label: "MSI B560M-A PRO Intel 11th Gen mATX Motherboard" },
+      { img: workImage5, label: "Cooler Master MWE Bronze 500W" },
+      { img: workImage6, label: "Crucial P2 Internal PCIe M.2 2280 SSD" },
+      { img: workImage7, label: "PCcooler EF120 ARGB 120mm BLACK Fan" },
+      { img: workImage8, label: "PCcooler EX6000 Black Ed CPU COOLER" }
     ],
   };
 
@@ -144,7 +144,7 @@ export const SideNavigation = () => {
   // Function to check if input is valid
   const isValidInput = () => {
     const budget = parseInt(inputValue, 10);
-    return dropdownValue && budget >= 10000 && budget <= 67044.99;
+    return dropdownValue && budget >= 10000 && budget <= 80000;
   };
 
   // Calculate budget and determine if gauges should be displayed
@@ -154,8 +154,8 @@ export const SideNavigation = () => {
     ? "Please enter a budget and select usage type."
     : budget < 10000
       ? "Budget must be at least ₱10,000."
-      : budget > 67044.99
-        ? "Budget cannot exceed ₱67,044.99."
+      : budget > 80000
+        ? "Budget cannot exceed ₱80,000."
         : !dropdownValue
           ? "Please select a usage type."
           : "Click Generate to see PC components.";
@@ -232,16 +232,16 @@ export const SideNavigation = () => {
           </div>
 
 
-          <div style={styles.totalContainer}>  
+          <div style={styles.totalContainer}>
             <button
               onClick={handleSimulationRedirect}
               style={styles.simulationButton}
             >
               Simulation
             </button>
-          
 
-            <span style={styles.totalLabel}>Total Budget: ₱{budget.toLocaleString()}</span>
+
+            <span style={styles.totalLabel}>Price Total: ₱{budget.toLocaleString()}</span>
           </div>
         </>
       ) : (
@@ -257,8 +257,12 @@ export const SideNavigation = () => {
 const styles = {
   sideNav: {
     position: 'absolute',
-    right: '5%',
-    top: '69vw',
+    // Uncomment/comment responsive divina laptop
+    // right: '5%',
+    // top: '69vw',
+    // Uncomment/comment responsive kurt laptop
+    right: '10vw',
+    top: '63vw',
     width: '80vw',
     maxWidth: '500px',
     height: 'auto',
@@ -364,10 +368,10 @@ const styles = {
   },
   simulationButton: {
     padding: '10px 20px',
-    backgroundColor: '#08a7a0',
+    backgroundColor: '#0B6477',
     color: '#fff',
     border: 'none',
-    borderRadius: '10px',
+    borderRadius: '14px',
     cursor: 'pointer',
     fontSize: '16px',
     fontWeight: '600',
@@ -386,7 +390,7 @@ const styles = {
     alignItems: 'center',
     color: '#ffffff',
     marginTop: '20px',
-    fontSize: '18px',
+    fontSize: '20px',
     textAlign: 'center',
     gap: '20px',
   },

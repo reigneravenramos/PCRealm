@@ -36,7 +36,7 @@ const GaugeChart = ({ data = {} }) => {
         data: data.values || [80, 70, 90, 60, 85],
         backgroundColor: 'rgba(0, 123, 255, 0.2)',
         borderColor: '#007bff',
-        borderWidth: 2,
+        borderWidth: 4,
       },
     ],
   };
@@ -46,7 +46,7 @@ const GaugeChart = ({ data = {} }) => {
     layout: {
       padding: {
         top: 12,
-        bottom: 30,
+        bottom: 36,
         left: 30,
         right: 30,
       },
@@ -93,7 +93,7 @@ const GaugeChart = ({ data = {} }) => {
         <p style={styles.title}>Performance Level</p>
         <Radar data={radarData} options={radarOptions} />
       </div>
-      
+
       <div style={styles.gaugeContainer}>
         <p style={styles.overheatingText}>Overheating Issues</p>
         <div style={styles.gaugeItem}>
@@ -156,14 +156,14 @@ const GaugeChart = ({ data = {} }) => {
 const styles = {
   overheatingText: {
     position: 'absolute',
-    top: '10%', // Center vertically
-    left: '50%', // Center horizontally
-    transform: 'translate(-50%, -50%)', // Center both horizontally and vertically
+    top: '4%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     fontSize: '20px',
     fontWeight: 'bold',
-    color: 'red', // Red color for overheating text
-    zIndex: 1, // Ensure the text is on top of the gauges
-    textAlign: 'center', // Center the text horizontally
+    color: 'red',
+    zIndex: 1,
+    textAlign: 'center',
   },
 
   container: {
@@ -189,28 +189,34 @@ const styles = {
     height: '450px',
     backgroundColor: '#213A57',
     borderRadius: '12px',
+    borderBottomLeftRadius: '0',
+    borderBottomRightRadius: '0',
     padding: '40px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
     marginLeft: '150px',
-    position: 'relative', // Enable absolute positioning for children
+    position: 'relative',
+    //marginBottom: '10px', 
   },
   gaugeContainer: {
-    position: 'relative', // Enable absolute positioning for children
+    position: 'relative',
     display: 'flex',
     justifyContent: 'space-between',
     width: '80%',
     maxWidth: '600px',
-    marginTop: '1px',
     padding: '20px',
     backgroundColor: '#213A57',
     borderRadius: '12px',
+    borderTopLeftRadius: '0',
+    borderTopRightRadius: '0',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
     marginLeft: '150px',
+    marginTop: '0',
   },
   gaugeItem: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    margin: '0 10px',
   },
   gauge: {
     width: '150px',
