@@ -231,16 +231,16 @@ export const SideNavigation = () => {
             })}
           </div>
 
-          <div style={styles.buttonContainer}>
+
+          <div style={styles.totalContainer}>  
             <button
               onClick={handleSimulationRedirect}
               style={styles.simulationButton}
             >
               Simulation
             </button>
-          </div>
+          
 
-          <div style={styles.totalContainer}>
             <span style={styles.totalLabel}>Total Budget: ₱{budget.toLocaleString()}</span>
           </div>
         </>
@@ -381,10 +381,14 @@ const styles = {
     textAlign: 'center',
   },
   totalContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     color: '#ffffff',
     marginTop: '20px',
     fontSize: '18px',
     textAlign: 'center',
+    gap: '20px',
   },
   totalLabel: {
     fontWeight: 'bold',

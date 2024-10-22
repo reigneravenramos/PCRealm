@@ -93,7 +93,7 @@ const GaugeChart = ({ data = {} }) => {
         <p style={styles.title}>Performance Level</p>
         <Radar data={radarData} options={radarOptions} />
       </div>
-
+      
       <div style={styles.gaugeContainer}>
         <p style={styles.overheatingText}>Overheating Issues</p>
         <div style={styles.gaugeItem}>
@@ -101,7 +101,7 @@ const GaugeChart = ({ data = {} }) => {
             id="gauge-chart-1"
             nrOfLevels={30}
             arcsLength={[0.75, 0.25]}
-            colors={['#007bff', '#ddd']}
+            colors={['#ff4d4d', '#ddd']} // Red color for overheating
             needleColor='#cfcccc'
             percent={0.75}
             arcPadding={0.02}
@@ -155,19 +155,22 @@ const GaugeChart = ({ data = {} }) => {
 // Styles for the component
 const styles = {
   overheatingText: {
-    marginTop: '20px',
-    fontSize: '18px',
+    position: 'absolute',
+    top: '10%', // Center vertically
+    left: '50%', // Center horizontally
+    transform: 'translate(-50%, -50%)', // Center both horizontally and vertically
+    fontSize: '20px',
     fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: '10px',
-    textAlign: 'center',
+    color: 'red', // Red color for overheating text
+    zIndex: 1, // Ensure the text is on top of the gauges
+    textAlign: 'center', // Center the text horizontally
   },
+
   container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: '20px',
-    gap: '30px',
     width: '100%',
     height: '142%',
     backgroundColor: '#AFDFEE',
@@ -189,9 +192,10 @@ const styles = {
     padding: '40px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
     marginLeft: '150px',
-    position: 'relative',
+    position: 'relative', // Enable absolute positioning for children
   },
   gaugeContainer: {
+    position: 'relative', // Enable absolute positioning for children
     display: 'flex',
     justifyContent: 'space-between',
     width: '80%',
@@ -228,22 +232,6 @@ const styles = {
     fontSize: '16px',
     fontWeight: 'bold',
     color: '#fff',
-  },
-  simulatedButton: {
-    position: 'absolute',
-    bottom: '390px',
-    left: '85%',
-    transform: 'translateX(-50%)',
-    padding: '10px 20px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
-    transition: 'background-color 0.3s ease',
   },
 };
 
