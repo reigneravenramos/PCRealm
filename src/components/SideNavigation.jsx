@@ -50,12 +50,12 @@ const Gauge = ({ imageSrc, label }) => {
   );
 };
 
-export const SideNavigation = () => {
+export const SideNavigation = ({ data, onGaugeUpdate }) => {
   // State variables for user input, dropdown selection, etc.
   const [inputValue, setInputValue] = useState("");
   const [dropdownValue, setDropdownValue] = useState("");
   const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
-  const [gaugeValues, setGaugeValues] = useState([0.75, 0.50, 0.25]);
+  const [, setGaugeValues] = useState([0.75, 0.50, 0.25]);
   const [isGenerated, setIsGenerated] = useState(false);
 
   // Data for different usage types with corresponding gauge options
@@ -137,6 +137,8 @@ export const SideNavigation = () => {
     if (isValidInput()) {
       handleSimulation();
       setIsGenerated(true);
+      // Add this line to update the gauge values
+      onGaugeUpdate(dropdownValue);
       console.log(`Input: ${inputValue}, Dropdown: ${dropdownValue}`);
     }
   };
@@ -188,14 +190,16 @@ export const SideNavigation = () => {
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Enter your budget"
+          min="1"
           style={styles.textField}
         />
         <select
           value={dropdownValue}
           onChange={handleDropdownChange}
           style={styles.dropdown}
+          defaultValue=""
         >
-          <option value="" disabled>Select a usage</option>
+          <option value="" disabled hidden>Select a usage</option>
           <option value="gaming">Gaming</option>
           <option value="school">School</option>
           <option value="work">Work</option>
@@ -268,7 +272,7 @@ const styles = {
     height: 'auto',
     backgroundColor: '#213A57',
     padding: '25px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
     borderRadius: '12px',
     zIndex: '1',
     fontFamily: '"Helvetica Neue", sans-serif',
@@ -337,6 +341,7 @@ const styles = {
     fontSize: '14px',
     color: '#333',
     outline: 'none',
+    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
   },
   textField: {
     width: '40%',
@@ -347,6 +352,7 @@ const styles = {
     fontSize: '14px',
     color: '#333',
     outline: 'none',
+    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
   },
   button: {
     width: '25%',
@@ -359,7 +365,7 @@ const styles = {
     fontSize: '14px',
     fontWeight: '600',
     transition: 'background-color 0.3s ease',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 4px 8px rgba(11, 100, 119, 0.3)',
   },
   buttonContainer: {
     display: 'flex',

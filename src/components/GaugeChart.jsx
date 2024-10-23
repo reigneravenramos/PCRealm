@@ -22,7 +22,10 @@ Chart.register(
   LineElement
 );
 
-const GaugeChart = ({ data = {} }) => {
+const GaugeChart = ({ data,
+  cpuGaugeValue,
+  gpuGaugeValue,
+  systemGaugeValue }) => {
   // Data for the radar chart
   const radarData = {
     labels: [
@@ -133,10 +136,10 @@ const GaugeChart = ({ data = {} }) => {
           <Gauge
             id="gauge-chart-1"
             nrOfLevels={30}
-            arcsLength={[0.75, 0.25]}
+            arcsLength={[cpuGaugeValue, 1 - cpuGaugeValue]}
             colors={['#ff4d4d', '#ddd']} // Red color for overheating
             needleColor='#cfcccc'
-            percent={0.75}
+            percent={cpuGaugeValue}
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
@@ -150,9 +153,9 @@ const GaugeChart = ({ data = {} }) => {
           <Gauge
             id="gauge-chart-2"
             nrOfLevels={30}
-            arcsLength={[0.50, 0.50]}
+            arcsLength={[gpuGaugeValue, 1 - gpuGaugeValue]}
             colors={['#007bff', '#ddd']}
-            percent={0.50}
+            percent={gpuGaugeValue}
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
@@ -167,9 +170,9 @@ const GaugeChart = ({ data = {} }) => {
           <Gauge
             id="gauge-chart-3"
             nrOfLevels={30}
-            arcsLength={[0.25, 0.75]}
+            arcsLength={[systemGaugeValue, 1 - systemGaugeValue]}
             colors={['#007bff', '#ddd']}
-            percent={0.25}
+            percent={systemGaugeValue}
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
