@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Features = (props) => {
+export const Features = () => {
   return (
     <div id="features" className="text-center" style={styles.featuresSection}>
       <div className="container" style={styles.container}>

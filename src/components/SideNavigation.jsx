@@ -127,9 +127,9 @@ export const SideNavigation = () => {
     setGaugeValues(newGaugeValues);
   };
 
-  // Add the redirect
+  // Add the redirect to other tab
   const handleSimulationRedirect = () => {
-    window.location.href = 'https://kurtpetrola.github.io/pcsd/';
+    window.open('https://kurtpetrola.github.io/pcsd/', '_blank');
   };
 
   // Handle form submission and validation
