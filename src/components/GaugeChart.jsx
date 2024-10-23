@@ -6,6 +6,7 @@ import {
   RadialLinearScale,
   Tooltip,
   Legend,
+  Filler,
   PointElement,
   LineController,
   LineElement
@@ -15,6 +16,7 @@ Chart.register(
   RadialLinearScale,
   Tooltip,
   Legend,
+  Filler,
   PointElement,
   LineController,
   LineElement
@@ -32,12 +34,38 @@ const GaugeChart = ({ data = {} }) => {
     ],
     datasets: [
       {
-        label: 'Computer Radar',
-        data: data.values || [80, 70, 90, 60, 85],
-        backgroundColor: 'rgba(0, 123, 255, 0.2)',
-        borderColor: '#007bff',
-        borderWidth: 4,
+        label: 'Computer Radar 0',
+        data: data.values0,
+        borderColor: '#2276FC',
+        backgroundColor: 'rgba(34, 118, 252, 0.3)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointBackgroundColor: '#2276FC',
+        fill: true,
+        order: 2
       },
+      {
+        label: 'Computer Radar 1',
+        data: data.values1,
+        borderColor: '#EE6F7C',
+        backgroundColor: 'rgba(238, 111, 124, 0.3)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointBackgroundColor: '#EE6F7C',
+        fill: true,
+        order: 1
+      },
+      {
+        label: 'Computer Radar 2',
+        data: data.values2,
+        borderColor: '#5FD5EC',
+        backgroundColor: 'rgba(95, 213, 236, 0.3)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointBackgroundColor: '#5FD5EC',
+        fill: true,
+        order: 3
+      }
     ],
   };
 
@@ -64,10 +92,10 @@ const GaugeChart = ({ data = {} }) => {
           },
         },
         grid: {
-          color: '#ccc',
+          color: 'rgba(200, 200, 200, 0.3)',
         },
         angleLines: {
-          color: '#aaa',
+          color: 'rgba(200, 200, 200, 0.3)',
         },
         pointLabels: {
           color: '#fff',
@@ -85,6 +113,11 @@ const GaugeChart = ({ data = {} }) => {
         display: false,
       },
     },
+    elements: {
+      line: {
+        borderWidth: 2,
+      }
+    }
   };
 
   return (
@@ -161,7 +194,7 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     fontSize: '20px',
     fontWeight: 'bold',
-    color: 'red',
+    color: '#FF3842',
     zIndex: 1,
     textAlign: 'center',
   },
