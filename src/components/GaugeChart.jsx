@@ -26,6 +26,27 @@ const GaugeChart = ({ data,
   cpuGaugeValue,
   gpuGaugeValue,
   systemGaugeValue }) => {
+
+  // Function to determine colors based on value
+  const getGaugeColors = (value) => {
+    if (value >= 0.8) {
+      return ['#EE6F7C', '#ddd']; // Red for high values (80%+)
+    } else if (value >= 0.6) {
+      return ['#2276FC', '#ddd']; // Blue for moderate values (60-79%)
+    }
+    return ['#5FD5EC', '#ddd']; // Green for safe values (0-59%)
+  };
+
+  // Function to determine text color based on value
+  const getTextColor = (value) => {
+    if (value >= 0.8) {
+      return '#EE6F7C'; // Red text
+    } else if (value >= 0.6) {
+      return '#2276FC'; // Blue text
+    }
+    return '#5FD5EC'; // Green text
+  };
+
   // Data for the radar chart
   const radarData = {
     labels: [
@@ -137,15 +158,18 @@ const GaugeChart = ({ data,
             id="gauge-chart-1"
             nrOfLevels={30}
             arcsLength={[cpuGaugeValue, 1 - cpuGaugeValue]}
-            colors={['#ff4d4d', '#ddd']} // Red color for overheating
+            colors={getGaugeColors(cpuGaugeValue)}
             needleColor='#cfcccc'
             percent={cpuGaugeValue}
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
-            textColor="#fff"
+            textColor={getTextColor(cpuGaugeValue)}
             style={styles.gauge}
-            textStyle={styles.gaugeText}
+            textStyle={{
+              ...styles.gaugeText,
+              fill: getTextColor(cpuGaugeValue),
+            }}
           />
           <p style={styles.gaugeLabel}>CPU</p>
         </div>
@@ -154,15 +178,18 @@ const GaugeChart = ({ data,
             id="gauge-chart-2"
             nrOfLevels={30}
             arcsLength={[gpuGaugeValue, 1 - gpuGaugeValue]}
-            colors={['#007bff', '#ddd']}
+            colors={getGaugeColors(gpuGaugeValue)}
             percent={gpuGaugeValue}
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
-            textColor="#fff"
+            textColor={getTextColor(gpuGaugeValue)}
             needleColor='#cfcccc'
             style={styles.gauge}
-            textStyle={styles.gaugeText}
+            textStyle={{
+              ...styles.gaugeText,
+              fill: getTextColor(gpuGaugeValue),
+            }}
           />
           <p style={styles.gaugeLabel}>GPU</p>
         </div>
@@ -171,15 +198,18 @@ const GaugeChart = ({ data,
             id="gauge-chart-3"
             nrOfLevels={30}
             arcsLength={[systemGaugeValue, 1 - systemGaugeValue]}
-            colors={['#007bff', '#ddd']}
+            colors={getGaugeColors(systemGaugeValue)}
             percent={systemGaugeValue}
             arcPadding={0.02}
             cornerRadius={3}
             animate={true}
-            textColor="#fff"
+            textColor={getTextColor(systemGaugeValue)}
             needleColor='#cfcccc'
             style={styles.gauge}
-            textStyle={styles.gaugeText}
+            textStyle={{
+              ...styles.gaugeText,
+              fill: getTextColor(systemGaugeValue),
+            }}
           />
           <p style={styles.gaugeLabel}>SYSTEM</p>
         </div>
