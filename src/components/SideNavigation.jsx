@@ -1,7 +1,7 @@
 // SideNavigation.jsx
 
 import React, { useReducer } from "react";
-import { gaugeOptions } from "../components/pcComponents";
+import { gaugeOptions } from "../data/pc-components";
 
 
 // Displays an image with a corresponding label
