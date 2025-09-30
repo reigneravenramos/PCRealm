@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { gaugeOptions } from '../components/pcComponents';
+// SideNavigation.jsx
+
+import React, { useReducer } from "react";
+import { gaugeOptions } from "../components/pcComponents";
 
 
 // Displays an image with a corresponding label
@@ -12,13 +14,45 @@ const Gauge = ({ imageSrc, label }) => {
   );
 };
 
+// Initial state for the reducer
+const initialState = {
+  inputValue: "",
+  dropdownValue: "",
+  currentFigures: [0, 1, 2, 3, 4, 5, 6, 7],
+  isGenerated: false,
+};
+
+// The reducer function to handle all state transitions
+function reducer(state, action) {
+  switch (action.type) {
+    case 'SET_INPUT_VALUE':
+      return { ...state, inputValue: action.payload, isGenerated: false };
+    case 'SET_DROPDOWN_VALUE':
+      return { ...state, dropdownValue: action.payload, isGenerated: false };
+    case 'SET_IS_GENERATED':
+      return { ...state, isGenerated: action.payload };
+    case 'NEXT_FIGURE': {
+      const { index, length } = action.payload;
+      const newFigures = [...state.currentFigures];
+      newFigures[index] = (newFigures[index] + 1) % length;
+      return { ...state, currentFigures: newFigures };
+    }
+    case 'PREV_FIGURE': {
+      const { index, length } = action.payload;
+      const newFigures = [...state.currentFigures];
+      newFigures[index] = (newFigures[index] - 1 + length) % length;
+      return { ...state, currentFigures: newFigures };
+    }
+    default:
+      return state;
+  }
+}
+
 export const SideNavigation = ({ data, onGaugeUpdate }) => {
-  // State variables for user input, dropdown selection, etc.
-  const [inputValue, setInputValue] = useState("");
-  const [dropdownValue, setDropdownValue] = useState("");
-  const [currentFigures, setCurrentFigures] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
-  const [, setGaugeValues] = useState([0.75, 0.50, 0.25]);
-  const [isGenerated, setIsGenerated] = useState(false);
+  // Use useReducer to manage all related state
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { inputValue, dropdownValue, currentFigures, isGenerated } = state;
+  // NOTE: You don't need `setGaugeValues` anymore as it was not used in the UI.
 
   // Helper function to get displayed gauges based on dropdown selection
   const getDisplayedGaugeValues = () => {
@@ -26,23 +60,14 @@ export const SideNavigation = ({ data, onGaugeUpdate }) => {
     return gaugeOptions[dropdownValue] || gaugeOptions.default;
   };
 
-  // Handle user input 
+  // Handle user input
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-    setIsGenerated(false);
+    dispatch({ type: 'SET_INPUT_VALUE', payload: e.target.value });
   };
 
   // Handle dropdown changes
   const handleDropdownChange = (e) => {
-    setDropdownValue(e.target.value);
-    setIsGenerated(false);
-    setCurrentFigures([0, 1, 2, 3, 4, 5, 6, 7]);
-  };
-
-  // Function to generate random gauge values
-  const handleSimulation = () => {
-    const newGaugeValues = Array(3).fill().map(() => Math.random().toFixed(2));
-    setGaugeValues(newGaugeValues);
+    dispatch({ type: 'SET_DROPDOWN_VALUE', payload: e.target.value });
   };
 
   // Add the redirect to other tab
@@ -53,8 +78,7 @@ export const SideNavigation = ({ data, onGaugeUpdate }) => {
   // Handle form submission and validation
   const handleSubmit = () => {
     if (isValidInput()) {
-      handleSimulation();
-      setIsGenerated(true);
+      dispatch({ type: 'SET_IS_GENERATED', payload: true });
       // Add this line to update the gauge values
       onGaugeUpdate(dropdownValue);
       console.log(`Input: ${inputValue}, Dropdown: ${dropdownValue}`);
@@ -65,6 +89,16 @@ export const SideNavigation = ({ data, onGaugeUpdate }) => {
   const isValidInput = () => {
     const budget = parseInt(inputValue, 10);
     return dropdownValue && budget >= 10000 && budget <= 80000;
+  };
+
+  const nextFigure = (index) => {
+    const displayedValues = getDisplayedGaugeValues();
+    dispatch({ type: 'NEXT_FIGURE', payload: { index, length: displayedValues.length } });
+  };
+
+  const prevFigure = (index) => {
+    const displayedValues = getDisplayedGaugeValues();
+    dispatch({ type: 'PREV_FIGURE', payload: { index, length: displayedValues.length } });
   };
 
   // Calculate budget and determine if gauges should be displayed
@@ -79,26 +113,6 @@ export const SideNavigation = ({ data, onGaugeUpdate }) => {
         : !dropdownValue
           ? "Please select a usage type."
           : "Click Generate to see PC components.";
-
-  const nextFigure = (index) => {
-    // Update the current figure index for the specified gauge
-    setCurrentFigures((prev) => {
-      const newFigures = [...prev];
-      const displayedValues = getDisplayedGaugeValues();
-      newFigures[index] = (newFigures[index] + 1) % displayedValues.length;
-      return newFigures;
-    });
-  };
-
-  const prevFigure = (index) => {
-    // Update the current figure index for the specified gauge
-    setCurrentFigures((prev) => {
-      const newFigures = [...prev];
-      const displayedValues = getDisplayedGaugeValues();
-      newFigures[index] = (newFigures[index] - 1 + displayedValues.length) % displayedValues.length;
-      return newFigures;
-    });
-  };
 
   return (
     <div style={styles.sideNav}>
@@ -153,7 +167,6 @@ export const SideNavigation = ({ data, onGaugeUpdate }) => {
             })}
           </div>
 
-
           <div style={styles.totalContainer}>
             <button
               onClick={handleSimulationRedirect}
@@ -161,8 +174,6 @@ export const SideNavigation = ({ data, onGaugeUpdate }) => {
             >
               Simulation
             </button>
-
-
             <span style={styles.totalLabel}>Price Total: ₱{budget.toLocaleString()}</span>
           </div>
         </>
@@ -175,14 +186,11 @@ export const SideNavigation = ({ data, onGaugeUpdate }) => {
   );
 };
 
-// Codes for styling 
+// Codes for styling
 const styles = {
+  // ... (Your existing styles object)
   sideNav: {
     position: 'absolute',
-    // Uncomment/comment responsive divina laptop
-    // right: '5%',
-    // top: '69vw',
-    // Uncomment/comment responsive kurt laptop
     right: '10vw',
     top: '63vw',
     width: '80vw',
@@ -285,11 +293,6 @@ const styles = {
     transition: 'background-color 0.3s ease',
     boxShadow: '0 4px 8px rgba(11, 100, 119, 0.3)',
   },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '20px',
-  },
   simulationButton: {
     padding: '10px 20px',
     backgroundColor: '#0B6477',
@@ -321,6 +324,7 @@ const styles = {
   totalLabel: {
     fontWeight: 'bold',
   },
+  // Media query styles
   '@media (max-width: 768px)': {
     sideNav: {
       width: '100vw',
