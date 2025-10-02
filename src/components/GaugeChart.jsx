@@ -27,6 +27,12 @@ const GaugeChart = ({ data,
   gpuGaugeValue,
   systemGaugeValue }) => {
 
+  // 💥 FIX 1: Add a null/undefined check for the 'data' prop
+  if (!data) {
+    // If data is missing (e.g., during the very first render cycle), just return null
+    return null;
+  }
+
   // Function to determine colors based on value
   const getGaugeColors = (value) => {
     if (value >= 0.8) {

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Navigation } from "./components/navigation";
-import { Header } from "./components/header";
-import { Features } from "./components/features";
+// FIX 1: Corrected casing to PascalCase to match disk names (Navigation.jsx)
+import { Navigation } from "./components/Navigation";
+// FIX 1: Corrected casing to PascalCase to match disk names (Header.jsx)
+import { Header } from "./components/Header";
+// FIX 2: DELETED the import for 'Features' since it was merged into Header.jsx
 import { SideNavigation } from "./components/SideNavigation";
 import JsonData from "./data/data.json";
 import SmoothScroll from "smooth-scroll";
@@ -84,12 +86,14 @@ const App = () => {
   return (
     <div>
       <Navigation />
+      {/* The features data is no longer needed here since it was merged into Header */}
       <Header data={landingPageData.Header} />
-      <Features data={landingPageData.Features} />
+
       <SideNavigation
         data={landingPageData.SideNavigation}
         onGaugeUpdate={handleGaugeValuesUpdate}
       />
+      {/* Removed the redundant 'data' prop since all values are passed individually */}
       <GaugeChart
         data={gaugeValues}
         cpuGaugeValue={gaugeValues.cpuGaugeValue}
