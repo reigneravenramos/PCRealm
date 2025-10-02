@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-// Extracted styles for the form elements
+// Extracted styles for the form elements (FIXED HEIGHTS FOR CONSISTENCY)
 const formStyles = {
     formContainer: {
         display: 'flex',
@@ -10,7 +10,7 @@ const formStyles = {
         alignItems: 'center',
         gap: '10px',
         marginBottom: '20px',
-        // Media query styles (often handled better with CSS-in-JS or CSS Modules)
+        // Media query styles remain here
         '@media (max-width: 768px)': {
             flexDirection: 'column',
             gap: '5px',
@@ -18,7 +18,10 @@ const formStyles = {
     },
     dropdown: {
         width: '40%',
-        padding: '8px',
+        // FIX: Enforce uniform height (e.g., 36px)
+        height: '36px',
+        padding: '0 10px', // Use horizontal padding; height controls vertical size
+
         borderRadius: '6px',
         border: '1px solid #ddd',
         backgroundColor: '#f9f9f9',
@@ -32,7 +35,10 @@ const formStyles = {
     },
     textField: {
         width: '40%',
-        padding: '8px',
+        // FIX: Enforce uniform height
+        height: '36px',
+        padding: '0 10px',
+
         borderRadius: '6px',
         border: '1px solid #ddd',
         backgroundColor: '#f9f9f9',
@@ -46,7 +52,10 @@ const formStyles = {
     },
     button: {
         width: '25%',
-        padding: '9px',
+        // FIX: Enforce uniform height
+        height: '36px',
+        padding: '0 15px', // Horizontal padding for visual comfort
+
         backgroundColor: '#0B6477',
         color: '#fff',
         border: 'none',
