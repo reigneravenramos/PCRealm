@@ -9,6 +9,8 @@ const formStyles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         gap: '10px',
+        padding: '16px', backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        borderRadius: '12px', boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
         marginBottom: '20px',
         // Media query styles remain here
         '@media (max-width: 768px)': {
