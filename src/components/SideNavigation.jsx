@@ -44,11 +44,7 @@ function reducer(state, action) {
 
 const parentStyles = {
   sideNav: {
-    position: 'absolute',
-    right: '10vw',
-    top: '63vw',
-    width: '80vw',
-    maxWidth: '500px',
+    width: '100%',
     height: 'auto',
     backgroundColor: '#213A57',
     padding: '25px',
@@ -58,10 +54,7 @@ const parentStyles = {
     fontFamily: '"Helvetica Neue", sans-serif',
     overflow: 'hidden',
     '@media (max-width: 768px)': {
-      width: '100vw',
-      right: '0',
-      top: 'auto',
-      bottom: '0',
+      width: '100%',
       height: 'auto',
       padding: '15px',
     },
