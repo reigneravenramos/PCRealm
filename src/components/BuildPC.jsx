@@ -6,16 +6,18 @@ import SmoothScroll from "smooth-scroll";
 import "../App.css";
 import GaugeChart from "./GaugeChart";
 
+// Smooth Scroll
 export const scroll = new SmoothScroll('a[href*="#"]', {
     speed: 1000,
     speedAsDuration: true,
 });
 
+// Header Styles
 const headerStyles = {
     featuresSection: {
         position: 'relative',
         color: '#fff',
-        paddingTop: '80px', // Added padding to clear the fixed navbar
+        paddingTop: '80px',
     },
     container: {
         position: 'relative',
@@ -27,6 +29,7 @@ const headerStyles = {
     },
 };
 
+// BuildPC Component
 const BuildPC = () => {
     const [landingPageData, setLandingPageData] = useState({});
     const [gaugeValues, setGaugeValues] = useState({
@@ -50,10 +53,10 @@ const BuildPC = () => {
         switch (usage) {
             case 'gaming':
                 newValues = {
-                    cpuGaugeValue: Number((0.6 + Math.random() * 0.3).toFixed(2)), // Higher CPU load
-                    gpuGaugeValue: Number((0.5 + Math.random() * 0.4).toFixed(2)), // Higher GPU load
+                    cpuGaugeValue: Number((0.6 + Math.random() * 0.3).toFixed(2)), // High CPU
+                    gpuGaugeValue: Number((0.5 + Math.random() * 0.4).toFixed(2)), // High GPU
                     systemGaugeValue: Number((0.3 + Math.random() * 0.4).toFixed(2)),
-                    values0: Array(5).fill().map(() => Math.floor(80 + Math.random() * 20)), // Higher performance
+                    values0: Array(5).fill().map(() => Math.floor(80 + Math.random() * 20)), // High performance
                     values1: Array(5).fill().map(() => Math.floor(70 + Math.random() * 15)),
                     values2: Array(5).fill().map(() => Math.floor(60 + Math.random() * 15))
                 };
@@ -61,7 +64,7 @@ const BuildPC = () => {
 
             case 'school':
                 newValues = {
-                    cpuGaugeValue: Number((0.2 + Math.random() * 0.4).toFixed(2)), // Lower loads
+                    cpuGaugeValue: Number((0.2 + Math.random() * 0.4).toFixed(2)), // Low load
                     gpuGaugeValue: Number((0.1 + Math.random() * 0.3).toFixed(2)),
                     systemGaugeValue: Number((0.1 + Math.random() * 0.3).toFixed(2)),
                     values0: Array(5).fill().map(() => Math.floor(50 + Math.random() * 20)), // Moderate performance
@@ -72,7 +75,7 @@ const BuildPC = () => {
 
             case 'work':
                 newValues = {
-                    cpuGaugeValue: Number((0.3 + Math.random() * 0.4).toFixed(2)), // Moderate loads
+                    cpuGaugeValue: Number((0.3 + Math.random() * 0.4).toFixed(2)), // Moderate load
                     gpuGaugeValue: Number((0.2 + Math.random() * 0.4).toFixed(2)),
                     systemGaugeValue: Number((0.2 + Math.random() * 0.3).toFixed(2)),
                     values0: Array(5).fill().map(() => Math.floor(60 + Math.random() * 20)), // Balanced performance
@@ -111,18 +114,17 @@ const BuildPC = () => {
 
             <div className="dashboard-content" style={{
                 display: 'flex',
-                justifyContent: 'center', // Keep centered
+                justifyContent: 'center',
                 alignItems: 'flex-start',
                 flexWrap: 'wrap',
-                gap: '30px', // Keep small gap
+                gap: '30px',
                 padding: '40px',
-                maxWidth: '1400px', // Increased width to ensure side-by-side layout
+                maxWidth: '1400px',
                 margin: '0 auto',
                 backgroundColor: '#AFDFEE',
                 borderRadius: '20px',
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)'
             }}>
-                {/* Removed the redundant 'data' prop since all values are passed individually */}
                 <div style={{ flex: '1 1 600px', maxWidth: '800px' }}>
                     <GaugeChart
                         data={gaugeValues}

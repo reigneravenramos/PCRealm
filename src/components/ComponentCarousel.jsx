@@ -1,9 +1,7 @@
-// ComponentCarousel.jsx
-
 import React from 'react';
 import { Gauge } from './Gauge';
 
-// Extracted styles for the carousel, total, and message elements
+// Carousel and layout styles
 const carouselStyles = {
     scrollContainer: {
         maxHeight: '450px',
@@ -75,7 +73,7 @@ const carouselStyles = {
     },
 };
 
-
+// Component Carousel Component
 const ComponentCarousel = ({
     currentFigures,
     getDisplayedGaugeValues,
@@ -91,7 +89,7 @@ const ComponentCarousel = ({
                     const displayedValues = getDisplayedGaugeValues();
                     const currentItem = displayedValues[figureIndex];
 
-                    if (!currentItem) return null; // Safety check
+                    if (!currentItem) return null;
 
                     return (
                         <div key={index} style={carouselStyles.carouselContainer}>
