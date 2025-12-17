@@ -1,13 +1,11 @@
-// SideNavigation.jsx
-
 import React, { useReducer } from "react";
-import { gaugeOptions } from "../data/pc-components"; // Import your component data
+import { gaugeOptions } from "../data/pc-components";
 
-// Import the new, self-contained components
+// Components
 import BudgetForm from "../components/BudgetForm";
 import ComponentCarousel from "../components/ComponentCarousel";
 
-// --- Reducer Logic ---
+// Initial State
 const initialState = {
   inputValue: "",
   dropdownValue: "",
@@ -15,6 +13,7 @@ const initialState = {
   isGenerated: false,
 };
 
+// Reducer
 function reducer(state, action) {
   switch (action.type) {
     case 'SET_INPUT_VALUE':
@@ -40,8 +39,7 @@ function reducer(state, action) {
   }
 }
 
-// --- Styles for the Parent Container ---
-
+// Styles
 const parentStyles = {
   sideNav: {
     width: '100%',
@@ -67,14 +65,11 @@ const parentStyles = {
   },
 };
 
-// --- Main Component ---
-
 export const SideNavigation = ({ onGaugeUpdate }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { inputValue, dropdownValue, currentFigures, isGenerated } = state;
 
-  // --- Handlers (Defined in Parent, Passed to Children) ---
-
+  // Handlers
   const isValidInput = () => {
     const budget = parseInt(inputValue, 10);
     return dropdownValue && budget >= 10000 && budget <= 80000;
@@ -106,8 +101,6 @@ export const SideNavigation = ({ onGaugeUpdate }) => {
     window.open('https://kurtpetrola.github.io/pcsd/', '_blank');
   };
 
-  // --- Rendering Logic ---
-
   const budget = parseInt(inputValue, 10);
   const shouldDisplayGauges = isGenerated && isValidInput();
   const message = !inputValue
@@ -122,7 +115,6 @@ export const SideNavigation = ({ onGaugeUpdate }) => {
 
   return (
     <div style={parentStyles.sideNav}>
-      {/* 1. Budget Form Component */}
       <BudgetForm
         state={state}
         dispatch={dispatch}
@@ -131,7 +123,6 @@ export const SideNavigation = ({ onGaugeUpdate }) => {
       />
 
       {shouldDisplayGauges ? (
-        // 2. Component Carousel Component
         <ComponentCarousel
           currentFigures={currentFigures}
           getDisplayedGaugeValues={getDisplayedGaugeValues}
@@ -148,6 +139,5 @@ export const SideNavigation = ({ onGaugeUpdate }) => {
     </div>
   );
 };
-
 
 export default SideNavigation;

@@ -1,8 +1,6 @@
-// BudgetForm.jsx
-
 import React from 'react';
 
-// Extracted styles for the form elements (FIXED HEIGHTS FOR CONSISTENCY)
+// Form Styles
 const formStyles = {
     formContainer: {
         display: 'flex',
@@ -12,7 +10,6 @@ const formStyles = {
         padding: '16px', backgroundColor: 'rgba(255, 255, 255, 0.1)',
         borderRadius: '12px', boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
         marginBottom: '20px',
-        // Media query styles remain here
         '@media (max-width: 768px)': {
             flexDirection: 'column',
             gap: '5px',
@@ -20,10 +17,8 @@ const formStyles = {
     },
     dropdown: {
         width: '40%',
-        // FIX: Enforce uniform height (e.g., 36px)
         height: '36px',
-        padding: '0 10px', // Use horizontal padding; height controls vertical size
-
+        padding: '0 10px',
         borderRadius: '6px',
         border: '1px solid #ddd',
         backgroundColor: '#f9f9f9',
@@ -37,10 +32,8 @@ const formStyles = {
     },
     textField: {
         width: '40%',
-        // FIX: Enforce uniform height
         height: '36px',
         padding: '0 10px',
-
         borderRadius: '6px',
         border: '1px solid #ddd',
         backgroundColor: '#f9f9f9',
@@ -54,10 +47,8 @@ const formStyles = {
     },
     button: {
         width: '25%',
-        // FIX: Enforce uniform height
         height: '36px',
-        padding: '0 15px', // Horizontal padding for visual comfort
-
+        padding: '0 15px',
         backgroundColor: '#0B6477',
         color: '#fff',
         border: 'none',
@@ -73,7 +64,7 @@ const formStyles = {
     },
 };
 
-
+// Budget Form Component
 const BudgetForm = ({ state, dispatch, handleSubmit, isValidInput }) => {
     const { inputValue, dropdownValue } = state;
 

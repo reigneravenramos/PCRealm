@@ -27,33 +27,31 @@ const GaugeChart = ({ data,
   gpuGaugeValue,
   systemGaugeValue }) => {
 
-  // 💥 FIX 1: Add a null/undefined check for the 'data' prop
+  // Return null if data is missing during initial render
   if (!data) {
-    // If data is missing (e.g., during the very first render cycle), just return null
     return null;
   }
 
-  // Function to determine colors based on value
+  // Gauge Colors
   const getGaugeColors = (value) => {
     if (value >= 0.8) {
-      return ['#EE6F7C', '#ddd']; // Red for high values (80%+)
+      return ['#EE6F7C', '#ddd']; // Red (High)
     } else if (value >= 0.6) {
-      return ['#2276FC', '#ddd']; // Blue for moderate values (60-79%)
+      return ['#2276FC', '#ddd']; // Blue (Moderate)
     }
-    return ['#5FD5EC', '#ddd']; // Green for safe values (0-59%)
+    return ['#5FD5EC', '#ddd']; // Green (Safe)
   };
 
-  // Function to determine text color based on value
   const getTextColor = (value) => {
     if (value >= 0.8) {
-      return '#EE6F7C'; // Red text
+      return '#EE6F7C';
     } else if (value >= 0.6) {
-      return '#2276FC'; // Blue text
+      return '#2276FC';
     }
-    return '#5FD5EC'; // Green text
+    return '#5FD5EC';
   };
 
-  // Data for the radar chart
+  // Radar Data
   const radarData = {
     labels: [
       ['Computing', '(Processor)'],
@@ -99,7 +97,6 @@ const GaugeChart = ({ data,
     ],
   };
 
-  // Options for the radar chart
   const radarOptions = {
     layout: {
       padding: {
@@ -224,7 +221,7 @@ const GaugeChart = ({ data,
   );
 };
 
-// Styles for the component
+// Styles
 const styles = {
   overheatingText: {
     position: 'absolute',
