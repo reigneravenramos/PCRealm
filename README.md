@@ -4,4 +4,4 @@ PCRealm is a web-based system designed to help users build their ideal PC setup 
 
 To ensure a user-friendly and well-structured experience, the application’s interface and user flow were designed using Figma. The design prototype presents the overall layout, navigation, and interaction flow of the system. Below is the link to view the Figma design and application flow.
 
-🔗 Figma Prototype: https://www.figma.com/design/oRMtYKzYmL3mhLbhRYJmaW/Venture-Project-Design?node-id=0-1&p=f&t=OMFbMfey7TXfYytZ-0
+🔗 Figma Prototype: https://www.figma.com/design/iFvAEFvrCI12SJRaoYChHU/PCRealm-UI-UX-Design?node-id=0-1&p=f&t=b0mUhz34Lt7A8muB-0
